@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import { Header, List } from 'semantic-ui-react';
+import moment from 'moment';
 
 function App() {
 
@@ -12,7 +13,8 @@ function App() {
     axios.get('http://localhost:5000/api/learnings').then(response => {
       setLearnings(response.data);
       console.log(response);
-    })
+    });
+    console.log(moment().add(10, 'days').toISOString());
   }, []);
 
   return (
