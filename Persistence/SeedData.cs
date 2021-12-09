@@ -10,19 +10,18 @@ namespace Persistence
     {
         public static async Task Seed(DataContext dbContext)
         {
-            if (dbContext.Learnings.Any()) return;
+            if (dbContext.Skills.Any()) return;
 
-            var learnings = new List<Learning> {
-                new Learning {
+            var skills = new List<Skill> {
+                new Skill {
                     Question = "First question",
                     Answer = "Answer",
-                    CompletedTests = "initial",
                     NextTestOn = DateTime.Now.AddDays(1),
                     Result = ""
                 }
             };
 
-            await dbContext.Learnings.AddRangeAsync(learnings);
+            await dbContext.Skills.AddRangeAsync(skills);
             await dbContext.SaveChangesAsync();
         }
     }

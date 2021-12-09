@@ -11,18 +11,18 @@ namespace Application.Learnings
 {
     public class ReadAll
     {
-        public class Query : IRequest<List<Learning>> {}
+        public class Query : IRequest<List<Skill>> {}
 
-        public class Handler : IRequestHandler<Query, List<Learning>>
+        public class Handler : IRequestHandler<Query, List<Skill>>
         {
-            private readonly ILearningsRepo learningsRepo;
+            private readonly ISkillsRepo learningsRepo;
 
-            public Handler(ILearningsRepo learningsRepo)
+            public Handler(ISkillsRepo learningsRepo)
             {
                 this.learningsRepo = learningsRepo;
             }
 
-            public async Task<List<Learning>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<List<Skill>> Handle(Query request, CancellationToken cancellationToken)
             {
                 return await learningsRepo.GetLearningsAsync();
             }

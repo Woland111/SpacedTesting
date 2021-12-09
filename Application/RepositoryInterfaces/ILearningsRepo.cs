@@ -6,14 +6,14 @@ using Domain;
 
 namespace Application.RepositoryInterfaces
 {
-    public interface ILearningsRepo
+    public interface ISkillsRepo
     {
-        Task<List<Learning>> GetLearningsAsync();
+        Task<List<Skill>> GetLearningsAsync();
 
-        Task<Learning> GetLearningAsync(Guid id);
+        Task<Skill> GetLearningAsync(Guid id);
 
-        Task CreateLearningAsync(Learning learning);
+        Task CreateLearningAsync(Skill learning);
 
-        Task ModifyLearningAsync(Guid id, Learning learning);
+        Task ModifyLearningAsync(Guid id, Skill learning);
     }
 }

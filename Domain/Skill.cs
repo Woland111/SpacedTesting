@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Learning
+    public class Skill
     {
         public Guid Id { get; set; }
 
@@ -14,8 +14,6 @@ namespace Domain
         public string Answer { get; set; }
 
         public DateTime NextTestOn { get; set; }
-
-        public string CompletedTests { get; set; }
 
         public string Result { get; set; }
     }

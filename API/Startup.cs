@@ -49,7 +49,7 @@ namespace API
             });
             services.AddMediatR(typeof(ReadAll.Query).Assembly);
         
-            services.AddScoped<ILearningsRepo, LearningsRepo>();
+            services.AddScoped<ISkillsRepo, SkillsRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

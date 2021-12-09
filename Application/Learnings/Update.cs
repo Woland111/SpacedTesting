@@ -14,14 +14,14 @@ namespace Application.Learnings
         public class Command : IRequest
         {
             public Guid Id { get; set; }
-            public Learning Learning { get; set; }
+            public Skill Learning { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
         {
-            private readonly ILearningsRepo learningsRepo;
+            private readonly ISkillsRepo learningsRepo;
 
-            public Handler(ILearningsRepo learningsRepo)
+            public Handler(ISkillsRepo learningsRepo)
             {
                 this.learningsRepo = learningsRepo;
             }

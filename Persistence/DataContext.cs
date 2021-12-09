@@ -13,7 +13,7 @@ namespace Persistence
         {
         }
 
-        public DbSet<Learning> Learnings { get; set; }
+        public DbSet<Skill> Skills { get; set; }
         
     }
 }

@@ -18,25 +18,25 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Learning>>> GetLearnings()
+        public async Task<ActionResult<List<Skill>>> GetLearnings()
         {
             return await mediator.Send(new ReadAll.Query());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Learning>> GetLearning(Guid id)
+        public async Task<ActionResult<Skill>> GetLearning(Guid id)
         {
             return await mediator.Send(new ReadOne.Query { Id = id });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Learning learning)
+        public async Task<IActionResult> Create(Skill learning)
         {
             return Ok(await mediator.Send(new Create.Command { Learning = learning }));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Modify(Guid id, Learning learning)
+        public async Task<IActionResult> Modify(Guid id, Skill learning)
         {
             return Ok(await mediator.Send(new Update.Command { Id = id, Learning = learning }));
         }

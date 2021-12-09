@@ -11,22 +11,22 @@ namespace Application.Learnings
 {
     public class ReadOne
     {
-        public class Query : IRequest<Learning>
+        public class Query : IRequest<Skill>
         {
             public Guid Id { get; set; }
 
         }
 
-        public class Handler : IRequestHandler<Query, Learning>
+        public class Handler : IRequestHandler<Query, Skill>
         {
-            private readonly ILearningsRepo learningsRepo;
+            private readonly ISkillsRepo learningsRepo;
 
-            public Handler(ILearningsRepo learningsRepo)
+            public Handler(ISkillsRepo learningsRepo)
             {
                 this.learningsRepo = learningsRepo;
             }
 
-            public async Task<Learning> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Skill> Handle(Query request, CancellationToken cancellationToken)
             {
                 return await learningsRepo.GetLearningAsync(request.Id);
             }
