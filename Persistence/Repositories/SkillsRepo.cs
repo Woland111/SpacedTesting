@@ -36,10 +36,10 @@ namespace Persistence.Repositories
         public async Task ModifyLearningAsync(Guid id, Skill updatedSkill)
         {
             var originalSkill = await dataContext.Skills.FindAsync(id);
-            originalSkill.Question = updatedSkill.Question;
-            originalSkill.Answer = updatedSkill.Answer;
+            originalSkill.Question = updatedSkill.Question ?? originalSkill.Question;
+            originalSkill.Answer = updatedSkill.Answer ?? originalSkill.Answer;
             originalSkill.NextTestOn = updatedSkill.NextTestOn;
-            originalSkill.Result = updatedSkill.Result;
+            originalSkill.Result = updatedSkill.Result ?? originalSkill.Result;
             await dataContext.SaveChangesAsync();
         }
     }
