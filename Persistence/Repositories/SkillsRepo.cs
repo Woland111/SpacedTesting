@@ -17,23 +17,23 @@ namespace Persistence.Repositories
             this.dataContext = dataContext;
         }
 
-        public async Task CreateLearningAsync(Skill skill)
+        public async Task CreateSkillAsync(Skill skill)
         {
             dataContext.Skills.Add(skill);
             await dataContext.SaveChangesAsync();
         }
 
-        public async Task<Skill> GetLearningAsync(Guid Id)
+        public async Task<Skill> GetSkillAsync(Guid Id)
         {
             return await dataContext.Skills.FindAsync(Id);
         }
 
-        public async Task<List<Skill>> GetLearningsAsync()
+        public async Task<List<Skill>> GetSkillsAsync()
         {
             return await dataContext.Skills.ToListAsync();
         }
 
-        public async Task ModifyLearningAsync(Guid id, Skill updatedSkill)
+        public async Task ModifySkillAsync(Guid id, Skill updatedSkill)
         {
             var originalSkill = await dataContext.Skills.FindAsync(id);
             originalSkill.Question = updatedSkill.Question ?? originalSkill.Question;

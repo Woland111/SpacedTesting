@@ -8,12 +8,12 @@ namespace Application.RepositoryInterfaces
 {
     public interface ISkillsRepo
     {
-        Task<List<Skill>> GetLearningsAsync();
+        Task<List<Skill>> GetSkillsAsync();
 
-        Task<Skill> GetLearningAsync(Guid id);
+        Task<Skill> GetSkillAsync(Guid id);
 
-        Task CreateLearningAsync(Skill learning);
+        Task CreateSkillAsync(Skill learning);
 
-        Task ModifyLearningAsync(Guid id, Skill learning);
+        Task ModifySkillAsync(Guid id, Skill learning);
     }
 }

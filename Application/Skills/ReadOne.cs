@@ -28,7 +28,7 @@ namespace Application.Skills
 
             public async Task<Skill> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await skillsRepo.GetLearningAsync(request.Id);
+                return await skillsRepo.GetSkillAsync(request.Id);
             }
         }
     }

@@ -27,7 +27,7 @@ namespace Application.Skills
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                await skillsRepo.CreateLearningAsync(request.Skill);
+                await skillsRepo.CreateSkillAsync(request.Skill);
                 
                 return Unit.Value;
             }
