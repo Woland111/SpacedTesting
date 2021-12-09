@@ -16,7 +16,7 @@ using Persistence;
 using Persistence.Repositories;
 using Application.RepositoryInterfaces;
 using MediatR;
-using Application.Learnings;
+using Application.Skills;
 
 namespace API
 {

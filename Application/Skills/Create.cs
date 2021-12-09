@@ -7,7 +7,7 @@ using Application.RepositoryInterfaces;
 using Domain;
 using MediatR;
 
-namespace Application.Learnings
+namespace Application.Skills
 {
     public class Create
     {

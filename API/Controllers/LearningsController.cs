@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Application.Learnings;
+using Application.Skills;
 using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
