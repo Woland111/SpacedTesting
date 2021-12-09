@@ -19,16 +19,16 @@ namespace Application.Skills
 
         public class Handler : IRequestHandler<Query, Skill>
         {
-            private readonly ISkillsRepo learningsRepo;
+            private readonly ISkillsRepo skillsRepo;
 
-            public Handler(ISkillsRepo learningsRepo)
+            public Handler(ISkillsRepo skillsRepo)
             {
-                this.learningsRepo = learningsRepo;
+                this.skillsRepo = skillsRepo;
             }
 
             public async Task<Skill> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await learningsRepo.GetLearningAsync(request.Id);
+                return await skillsRepo.GetLearningAsync(request.Id);
             }
         }
     }

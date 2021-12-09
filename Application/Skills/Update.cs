@@ -14,21 +14,21 @@ namespace Application.Skills
         public class Command : IRequest
         {
             public Guid Id { get; set; }
-            public Skill Learning { get; set; }
+            public Skill Skill { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
         {
-            private readonly ISkillsRepo learningsRepo;
+            private readonly ISkillsRepo skillsRepo;
 
-            public Handler(ISkillsRepo learningsRepo)
+            public Handler(ISkillsRepo skillsRepo)
             {
-                this.learningsRepo = learningsRepo;
+                this.skillsRepo = skillsRepo;
             }
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                await learningsRepo.ModifyLearningAsync(request.Id, request.Learning);
+                await skillsRepo.ModifyLearningAsync(request.Id, request.Skill);
 
                 return Unit.Value;
             }

@@ -32,13 +32,13 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Skill learning)
         {
-            return Ok(await mediator.Send(new Create.Command { Learning = learning }));
+            return Ok(await mediator.Send(new Create.Command { Skill = learning }));
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Modify(Guid id, Skill learning)
         {
-            return Ok(await mediator.Send(new Update.Command { Id = id, Learning = learning }));
+            return Ok(await mediator.Send(new Update.Command { Id = id, Skill = learning }));
         }
     }
 }
