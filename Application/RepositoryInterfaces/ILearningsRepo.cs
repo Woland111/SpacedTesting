@@ -15,5 +15,7 @@ namespace Application.RepositoryInterfaces
         Task CreateSkillAsync(Skill skill);
 
         Task ModifySkillAsync(Skill skill);
+
+        Task DeleteSkillAsync(Guid id);
     }
 }

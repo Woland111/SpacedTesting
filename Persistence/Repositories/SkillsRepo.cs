@@ -26,6 +26,13 @@ namespace Persistence.Repositories
             await dataContext.SaveChangesAsync();
         }
 
+        public async Task DeleteSkillAsync(Guid id)
+        {
+            var skill = await dataContext.Skills.FindAsync(id);
+            dataContext.Skills.Remove(skill);
+            await dataContext.SaveChangesAsync();
+        }
+
         public async Task<Skill> GetSkillAsync(Guid Id)
         {
             return await dataContext.Skills.FindAsync(Id);

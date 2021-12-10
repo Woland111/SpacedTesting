@@ -11,28 +11,28 @@ using Persistence;
 
 namespace API.Controllers
 {
-    public class LearningsController : BaseApiController
+    public class SkillsController : BaseApiController
     {
-        public LearningsController(IMediator mediator) : base(mediator)
+        public SkillsController(IMediator mediator) : base(mediator)
         {
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Skill>>> GetLearnings()
+        public async Task<ActionResult<List<Skill>>> GetSkills()
         {
             return await mediator.Send(new ReadAll.Query());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Skill>> GetLearning(Guid id)
+        public async Task<ActionResult<Skill>> GetSkill(Guid id)
         {
             return await mediator.Send(new ReadOne.Query { Id = id });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Skill learning)
+        public async Task<IActionResult> Create(Skill skill)
         {
-            return Ok(await mediator.Send(new Create.Command { Skill = learning }));
+            return Ok(await mediator.Send(new Create.Command { Skill = skill }));
         }
 
         [HttpPut("{id}")]
@@ -40,6 +40,12 @@ namespace API.Controllers
         {
             skill.Id = id;
             return Ok(await mediator.Send(new Update.Command { Skill = skill }));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            return Ok(await mediator.Send(new Delete.Command { Id = id }));
         }
     }
 }
