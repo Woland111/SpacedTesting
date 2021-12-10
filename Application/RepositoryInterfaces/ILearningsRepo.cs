@@ -12,8 +12,8 @@ namespace Application.RepositoryInterfaces
 
         Task<Skill> GetSkillAsync(Guid id);
 
-        Task CreateSkillAsync(Skill learning);
+        Task CreateSkillAsync(Skill skill);
 
-        Task ModifySkillAsync(Guid id, Skill learning);
+        Task ModifySkillAsync(Skill skill);
     }
 }

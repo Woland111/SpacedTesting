@@ -13,7 +13,6 @@ namespace Application.Skills
     {
         public class Command : IRequest
         {
-            public Guid Id { get; set; }
             public Skill Skill { get; set; }
         }
 
@@ -28,7 +27,7 @@ namespace Application.Skills
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                await skillsRepo.ModifySkillAsync(request.Id, request.Skill);
+                await skillsRepo.ModifySkillAsync(request.Skill);
 
                 return Unit.Value;
             }

@@ -48,6 +48,7 @@ namespace API
                 });
             });
             services.AddMediatR(typeof(ReadAll.Query).Assembly);
+            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
         
             services.AddScoped<ISkillsRepo, SkillsRepo>();
         }

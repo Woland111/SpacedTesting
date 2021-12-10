@@ -38,7 +38,8 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Modify(Guid id, Skill skill)
         {
-            return Ok(await mediator.Send(new Update.Command { Id = id, Skill = skill }));
+            skill.Id = id;
+            return Ok(await mediator.Send(new Update.Command { Skill = skill }));
         }
     }
 }
