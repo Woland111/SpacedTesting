@@ -13,6 +13,8 @@ namespace Domain
 
         public string Answer { get; set; }
 
+        public DateTime CreationTimestamp { get; set; }
+
         public DateTime NextTestOn { get; set; }
 
         public string Result { get; set; }
