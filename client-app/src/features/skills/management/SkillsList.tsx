@@ -16,7 +16,7 @@ export default function SkillsList({ skills }: Props) {
               <Item.Description>{skill.answer}</Item.Description>
               <Item.Meta>Next test on: {skill.nextTestOn}</Item.Meta>
               <Item.Extra>
-                  <Button floated='right' color='blue'>View</Button>
+                  <Button primary floated='right' color='blue'>View</Button>
                   <Label>private</Label>
               </Item.Extra>
             </Item.Content>
