@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
 import axios from "axios";
-import { Header, List } from "semantic-ui-react";
+import { List } from "semantic-ui-react";
 import { Skill } from "../models/skill";
+import NavBar from "./NavBar";
 
 function App() {
   const [skills, setSkills] = useState<Skill[]>([]);
@@ -15,7 +16,7 @@ function App() {
 
   return (
     <div>
-      <Header as="h2" content="Spaced Testing" icon="university" />
+      <NavBar/>
       <List>
         {skills.map(skill => (
           <List.Item key={skill.id}>{skill.question}</List.Item>
