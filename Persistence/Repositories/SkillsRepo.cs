@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Application.RepositoryInterfaces;
 using AutoMapper;
@@ -38,9 +39,9 @@ namespace Persistence.Repositories
             return await dataContext.Skills.FindAsync(Id);
         }
 
-        public async Task<List<Skill>> GetSkillsAsync()
+        public async Task<List<Skill>> GetSkillsAsync(CancellationToken cancellationToken)
         {
-            return await dataContext.Skills.ToListAsync();
+            return await dataContext.Skills.ToListAsync(cancellationToken);
         }
 
         public async Task ModifySkillAsync(Skill updatedSkill)

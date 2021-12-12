@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Application.Skills;
 using Domain;
@@ -18,9 +19,9 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Skill>>> GetSkills()
+        public async Task<ActionResult<List<Skill>>> GetSkills(CancellationToken cancellationToken)
         {
-            return await mediator.Send(new ReadAll.Query());
+            return await mediator.Send(new ReadAll.Query(), cancellationToken);
         }
 
         [HttpGet("{id}")]
