@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import "./styles.css";
 import axios from "axios";
-import { List } from "semantic-ui-react";
+import { Container, List } from "semantic-ui-react";
 import { Skill } from "../models/skill";
 import NavBar from "./NavBar";
 
@@ -15,14 +15,16 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <NavBar/>
-      <List>
-        {skills.map(skill => (
-          <List.Item key={skill.id}>{skill.question}</List.Item>
-        ))}
-      </List>
-    </div>
+    <>
+      <NavBar />
+      <Container style={{ marginTop: '2em' }}>
+        <List>
+          {skills.map((skill) => (
+            <List.Item key={skill.id}>{skill.question}</List.Item>
+          ))}
+        </List>
+      </Container>
+    </>
   );
 }
 
