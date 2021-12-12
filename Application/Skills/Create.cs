@@ -27,6 +27,7 @@ namespace Application.Skills
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
+                request.Skill.CreationTimestamp = DateTime.Now;
                 await skillsRepo.CreateSkillAsync(request.Skill);
                 
                 return Unit.Value;
