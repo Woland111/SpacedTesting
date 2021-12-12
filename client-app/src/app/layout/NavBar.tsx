@@ -5,7 +5,7 @@ export default function NavBar() {
         <Menu inverted>
             <Container>
                 <Menu.Item header>
-                    <img src='/assets/logo.png'></img>
+                    <img src="/assets/app_icon.png" alt="app icon" style={{ marginRight: 10 }}></img>
                     Spaced Testing
                 </Menu.Item>
                 <Menu.Item name='Skills'/>
