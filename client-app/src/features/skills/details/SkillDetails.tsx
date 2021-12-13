@@ -3,7 +3,7 @@ import { Skill } from "../../../app/models/skill";
 
 interface Props {
   skill: Skill;
-  setEditMode: (isInEditMode: Boolean) => void;
+  setEditMode: (isInEditMode: boolean) => void;
   cancelSelectedSkill: () => void;
 }
 

@@ -1,7 +1,7 @@
 import { Button, Form, Segment } from "semantic-ui-react";
 
 interface Props {
-  setEditMode: (isInEditMode: Boolean) => void;
+  setEditMode: (isInEditMode: boolean) => void;
 }
 
 export default function SkillEdit({ setEditMode }: Props) {

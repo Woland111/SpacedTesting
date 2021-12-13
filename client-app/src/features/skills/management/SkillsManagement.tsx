@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function SkillsManagement({ skills }: Props) {
-  const [isInEditMode, setIsInEditMode] = useState<Boolean>(false);
+  const [isInEditMode, setIsInEditMode] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState<Skill | undefined>(
     undefined
   );
