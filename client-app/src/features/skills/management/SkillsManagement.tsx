@@ -11,16 +11,25 @@ interface Props {
 
 export default function SkillsManagement({ skills }: Props) {
   const [isInEditMode, setIsInEditMode] = useState<Boolean>(false);
-  const setEditMode = (isInEditMode: Boolean) => setIsInEditMode(isInEditMode);
+  const [selectedSkill, setSelectedSkill] = useState<Skill | undefined>(
+    undefined
+  );
+  const cancelSelectedSkill = () => setSelectedSkill(undefined);
 
   return (
     <Grid>
       <Grid.Column width="10">
-        <SkillsList skills={skills} />
+        <SkillsList skills={skills} setSelectedSkill={setSelectedSkill} />
       </Grid.Column>
       <Grid.Column width="6">
-        {skills[0] && !isInEditMode && <SkillDetails skill={skills[0]} setEditMode={setEditMode} />}
-        {isInEditMode && <SkillEdit setEditMode={setEditMode}/>}
+        {selectedSkill && !isInEditMode && (
+          <SkillDetails
+            skill={selectedSkill}
+            setEditMode={setIsInEditMode}
+            cancelSelectedSkill={cancelSelectedSkill}
+          />
+        )}
+        {isInEditMode && <SkillEdit setEditMode={setIsInEditMode} />}
       </Grid.Column>
     </Grid>
   );

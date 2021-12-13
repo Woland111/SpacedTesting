@@ -3,9 +3,10 @@ import { Skill } from "../../../app/models/skill";
 
 interface Props {
   skills: Skill[];
+  setSelectedSkill: (skill: Skill) => void;
 }
 
-export default function SkillsList({ skills }: Props) {
+export default function SkillsList({ skills, setSelectedSkill }: Props) {
   return (
     <Segment>
       <Item.Group divided>
@@ -16,7 +17,7 @@ export default function SkillsList({ skills }: Props) {
               <Item.Description>{skill.answer}</Item.Description>
               <Item.Meta>Next test on: {skill.nextTestOn}</Item.Meta>
               <Item.Extra>
-                  <Button primary floated='right' color='blue'>View</Button>
+                  <Button primary floated='right' color='blue' onClick={() => setSelectedSkill(skill)}>View</Button>
                   <Label>private</Label>
               </Item.Extra>
             </Item.Content>
