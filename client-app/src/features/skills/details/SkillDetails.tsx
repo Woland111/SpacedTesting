@@ -24,7 +24,7 @@ export default function SkillDetails({ skill, setEditMode }: Props) {
             Edit
           </Button>
           <Button basic color="grey">
-            Cancell
+            Cancel
           </Button>
         </Button.Group>
       </Card.Content>
