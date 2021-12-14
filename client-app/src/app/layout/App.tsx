@@ -26,7 +26,7 @@ function App() {
 
   return (
     <>
-      <NavBar  />
+      <NavBar openForm={openForm}  />
       <Container style={{ marginTop: "2em" }}>
         <SkillsManagement skills={skills} isInEditMode={isInEditMode} setIsInEditMode={setIsInEditMode} selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />
       </Container>
