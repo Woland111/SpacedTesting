@@ -29,7 +29,7 @@ export default function SkillsManagement({ skills }: Props) {
             cancelSelectedSkill={cancelSelectedSkill}
           />
         )}
-        {isInEditMode && <SkillEdit setEditMode={setIsInEditMode} />}
+        {isInEditMode && <SkillEdit skill={selectedSkill} setEditMode={setIsInEditMode} />}
       </Grid.Column>
     </Grid>
   );
