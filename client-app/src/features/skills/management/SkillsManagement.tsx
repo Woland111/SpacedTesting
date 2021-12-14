@@ -11,9 +11,10 @@ interface Props {
   setIsInEditMode: (editMode: boolean) => void;
   selectedSkill: Skill | undefined;
   setSelectedSkill: (skill: Skill | undefined) => void;
+  openForm: (skill: Skill) => void;
 }
 
-export default function SkillsManagement({ skills, isInEditMode, setIsInEditMode, selectedSkill, setSelectedSkill }: Props) {
+export default function SkillsManagement({ skills, isInEditMode, setIsInEditMode, selectedSkill, setSelectedSkill, openForm }: Props) {
   
   const cancelSelectedSkill = () => setSelectedSkill(undefined);  
 
@@ -26,7 +27,7 @@ export default function SkillsManagement({ skills, isInEditMode, setIsInEditMode
         {selectedSkill && !isInEditMode && (
           <SkillDetails
             skill={selectedSkill}
-            setEditMode={setIsInEditMode}
+            openForm={openForm}
             cancelSelectedSkill={cancelSelectedSkill}
           />
         )}

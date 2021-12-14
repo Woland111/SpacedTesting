@@ -16,7 +16,7 @@ function App() {
   const openForm = (skill?: Skill) => {
     setSelectedSkill(skill);
     setIsInEditMode(true);
-  }
+  };
 
   useEffect(() => {
     axios.get<Skill[]>("http://localhost:5000/api/skills").then((response) => {
@@ -26,9 +26,16 @@ function App() {
 
   return (
     <>
-      <NavBar openForm={openForm}  />
+      <NavBar openForm={openForm} />
       <Container style={{ marginTop: "2em" }}>
-        <SkillsManagement skills={skills} isInEditMode={isInEditMode} setIsInEditMode={setIsInEditMode} selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />
+        <SkillsManagement
+          skills={skills}
+          isInEditMode={isInEditMode}
+          setIsInEditMode={setIsInEditMode}
+          selectedSkill={selectedSkill}
+          setSelectedSkill={setSelectedSkill}
+          openForm={openForm}
+        />
       </Container>
     </>
   );

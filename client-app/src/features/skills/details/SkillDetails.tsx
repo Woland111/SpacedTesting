@@ -3,11 +3,11 @@ import { Skill } from "../../../app/models/skill";
 
 interface Props {
   skill: Skill;
-  setEditMode: (isInEditMode: boolean) => void;
+  openForm: (skill: Skill) => void;
   cancelSelectedSkill: () => void;
 }
 
-export default function SkillDetails({ skill, setEditMode, cancelSelectedSkill }: Props) {
+export default function SkillDetails({ skill, openForm, cancelSelectedSkill }: Props) {
   return (
     <Card fluid>
       <Image src="/assets/skill_icon.png" size="small" />
@@ -21,7 +21,7 @@ export default function SkillDetails({ skill, setEditMode, cancelSelectedSkill }
       </Card.Content>
       <Card.Content extra>
         <Button.Group floated="right">
-          <Button basic color="blue" onClick={() => setEditMode(true)}>
+          <Button basic color="blue" onClick={() => openForm(skill)}>
             Edit
           </Button>
           <Button basic color="grey" onClick={cancelSelectedSkill}>
