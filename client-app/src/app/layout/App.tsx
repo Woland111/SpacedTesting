@@ -18,6 +18,11 @@ function App() {
     setIsInEditMode(true);
   };
 
+  const closeForm = () => {
+    setSelectedSkill(undefined);
+    setIsInEditMode(false);
+  }
+
   useEffect(() => {
     axios.get<Skill[]>("http://localhost:5000/api/skills").then((response) => {
       setSkills(response.data);
@@ -35,6 +40,7 @@ function App() {
           selectedSkill={selectedSkill}
           setSelectedSkill={setSelectedSkill}
           openForm={openForm}
+          closeForm={closeForm}
         />
       </Container>
     </>

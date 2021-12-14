@@ -12,11 +12,19 @@ interface Props {
   selectedSkill: Skill | undefined;
   setSelectedSkill: (skill: Skill | undefined) => void;
   openForm: (skill: Skill) => void;
+  closeForm: () => void;
 }
 
-export default function SkillsManagement({ skills, isInEditMode, setIsInEditMode, selectedSkill, setSelectedSkill, openForm }: Props) {
-  
-  const cancelSelectedSkill = () => setSelectedSkill(undefined);  
+export default function SkillsManagement({
+  skills,
+  isInEditMode,
+  setIsInEditMode,
+  selectedSkill,
+  setSelectedSkill,
+  openForm,
+  closeForm,
+}: Props) {
+  const cancelSelectedSkill = () => setSelectedSkill(undefined);
 
   return (
     <Grid>
@@ -31,7 +39,9 @@ export default function SkillsManagement({ skills, isInEditMode, setIsInEditMode
             cancelSelectedSkill={cancelSelectedSkill}
           />
         )}
-        {isInEditMode && <SkillEdit skill={selectedSkill} setEditMode={setIsInEditMode} />}
+        {isInEditMode && (
+          <SkillEdit skill={selectedSkill} setEditMode={setIsInEditMode} closeForm={closeForm} />
+        )}
       </Grid.Column>
     </Grid>
   );
