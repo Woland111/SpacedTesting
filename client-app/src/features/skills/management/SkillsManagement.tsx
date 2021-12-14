@@ -8,7 +8,6 @@ import SkillsList from "./SkillsList";
 interface Props {
   skills: Skill[];
   isInEditMode: boolean;
-  setIsInEditMode: (editMode: boolean) => void;
   selectedSkill: Skill | undefined;
   setSelectedSkill: (skill: Skill | undefined) => void;
   openForm: (skill: Skill) => void;
@@ -18,7 +17,6 @@ interface Props {
 export default function SkillsManagement({
   skills,
   isInEditMode,
-  setIsInEditMode,
   selectedSkill,
   setSelectedSkill,
   openForm,

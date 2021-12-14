@@ -36,7 +36,6 @@ function App() {
         <SkillsManagement
           skills={skills}
           isInEditMode={isInEditMode}
-          setIsInEditMode={setIsInEditMode}
           selectedSkill={selectedSkill}
           setSelectedSkill={setSelectedSkill}
           openForm={openForm}
