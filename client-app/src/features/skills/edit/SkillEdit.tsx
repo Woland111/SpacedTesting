@@ -3,11 +3,10 @@ import { Skill } from "../../../app/models/skill";
 
 interface Props {
   skill: Skill | undefined;
-  setEditMode: (isInEditMode: boolean) => void;
   closeForm: () => void;
 }
 
-export default function SkillEdit({ skill, setEditMode, closeForm }: Props) {
+export default function SkillEdit({ skill, closeForm }: Props) {
   return (
     <Segment clearing>
       <Form>

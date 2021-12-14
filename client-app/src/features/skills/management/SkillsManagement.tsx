@@ -40,7 +40,7 @@ export default function SkillsManagement({
           />
         )}
         {isInEditMode && (
-          <SkillEdit skill={selectedSkill} setEditMode={setIsInEditMode} closeForm={closeForm} />
+          <SkillEdit skill={selectedSkill} closeForm={closeForm} />
         )}
       </Grid.Column>
     </Grid>
