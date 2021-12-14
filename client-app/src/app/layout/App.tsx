@@ -8,6 +8,10 @@ import SkillsManagement from "../../features/skills/management/SkillsManagement"
 
 function App() {
   const [skills, setSkills] = useState<Skill[]>([]);
+  const [isInEditMode, setIsInEditMode] = useState(false);
+  const [selectedSkill, setSelectedSkill] = useState<Skill | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     axios.get<Skill[]>("http://localhost:5000/api/skills").then((response) => {
@@ -19,7 +23,7 @@ function App() {
     <>
       <NavBar />
       <Container style={{ marginTop: "2em" }}>
-        <SkillsManagement skills={skills} />
+        <SkillsManagement skills={skills} isInEditMode={isInEditMode} setIsInEditMode={setIsInEditMode} selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />
       </Container>
     </>
   );

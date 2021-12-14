@@ -7,14 +7,15 @@ import SkillsList from "./SkillsList";
 
 interface Props {
   skills: Skill[];
+  isInEditMode: boolean;
+  setIsInEditMode: (editMode: boolean) => void;
+  selectedSkill: Skill | undefined;
+  setSelectedSkill: (skill: Skill | undefined) => void;
 }
 
-export default function SkillsManagement({ skills }: Props) {
-  const [isInEditMode, setIsInEditMode] = useState(false);
-  const [selectedSkill, setSelectedSkill] = useState<Skill | undefined>(
-    undefined
-  );
-  const cancelSelectedSkill = () => setSelectedSkill(undefined);
+export default function SkillsManagement({ skills, isInEditMode, setIsInEditMode, selectedSkill, setSelectedSkill }: Props) {
+  
+  const cancelSelectedSkill = () => setSelectedSkill(undefined);  
 
   return (
     <Grid>
