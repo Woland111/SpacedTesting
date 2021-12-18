@@ -7,6 +7,8 @@ import NavBar from './NavBar';
 import SkillsManagement from '../../features/skills/management/SkillsManagement';
 import { v4 as uuid } from 'uuid';
 import { executionAsyncResource } from 'async_hooks';
+import httpRequests from '../api/agent';
+import skillsApi from '../api/agent';
 
 function App() {
   const [skills, setSkills] = useState<Skill[]>([]);
@@ -29,7 +31,7 @@ function App() {
     setSkills([...skills.filter((s) => s.id !== skill.id), skill]);
     setIsInEditMode(false);
     setSelectedSkill(skill);
-    axios.put(`http://localhost:5000/api/skills/${skill.id}`, skill);
+    skillsApi.update(skill);
   };
 
   const createSkill = (skill: Skill) => {
@@ -37,18 +39,16 @@ function App() {
     setIsInEditMode(false);
     setSkills([...skills, skill]);
     setSelectedSkill(skill);
-    axios.post('http://localhost:5000/api/skills', skill);
+    skillsApi.create(skill);
   };
 
   const deleteSkill = (id: string) => {
     setSkills([...skills.filter(s => s.id !== id)]);
-    axios.delete(`http://localhost:5000/api/skills/${id}`);
+    skillsApi.delete(id);
   }
 
   useEffect(() => {
-    axios.get<Skill[]>('http://localhost:5000/api/skills').then((response) => {
-      setSkills(response.data);
-    });
+    skillsApi.readAll().then(response => setSkills(response));
   }, []);
 
   return (
