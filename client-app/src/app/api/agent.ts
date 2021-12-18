@@ -1,6 +1,13 @@
 import axios from 'axios';
 import { Skill } from '../models/skill';
 
+const sleep = (delay: number) => new Promise(resolve => setTimeout(resolve, delay));
+
+axios.interceptors.response.use(async response => {
+  await sleep(3000); 
+  return response;
+});
+
 axios.defaults.baseURL = 'http://localhost:5000/api/';
 
 const httpRequests = {
