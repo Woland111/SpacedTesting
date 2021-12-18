@@ -21,7 +21,11 @@ const httpRequests = {
 };
 
 const skillsApi = {
-  create: (skill: Skill) => httpRequests.post('skills', skill),
+  create: (skill: Skill) => {
+    skill.creationTimestamp = '2021-12-18';
+    console.log(skill);
+    return httpRequests.post('skills', skill);
+  },
   readAll: () => {
     const skills: Skill[] = [];
     return httpRequests.get<Skill[]>('skills').then(response => response.forEach(s => {
