@@ -54,6 +54,7 @@ function App() {
     setSkills([...skills.filter(s => s.id !== id)]);
     await skillsApi.delete(id);
     setIsSaving(false);
+    setSelectedSkill(undefined);
   }
 
   useEffect(() => {
