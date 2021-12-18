@@ -32,8 +32,8 @@ function App() {
 
   const updateSkill = async (skill: Skill) => {
     setIsSaving(true);
-    setSkills([...skills.filter((s) => s.id !== skill.id), skill]);
     await skillsApi.update(skill);
+    setSkills([...skills.filter((s) => s.id !== skill.id), skill]);
     setIsInEditMode(false);
     setSelectedSkill(skill);
     setIsSaving(false);
@@ -42,8 +42,8 @@ function App() {
   const createSkill = async (skill: Skill) => {
     setIsSaving(true);
     skill.id = uuid();
-    setSkills([...skills, skill]);
     await skillsApi.create(skill);
+    setSkills([...skills, skill]);
     setIsSaving(false);
     setIsInEditMode(false);
     setSelectedSkill(skill);
@@ -51,8 +51,8 @@ function App() {
 
   const deleteSkill = async (id: string) => {
     setIsSaving(true);
-    setSkills([...skills.filter(s => s.id !== id)]);
     await skillsApi.delete(id);
+    setSkills([...skills.filter(s => s.id !== id)]);
     setIsSaving(false);
     setSelectedSkill(undefined);
   }
