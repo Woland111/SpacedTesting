@@ -1,16 +1,22 @@
-import { Button, Card, Icon, Image } from "semantic-ui-react";
-import { Skill } from "../../../app/models/skill";
+import { Button, Card, Icon, Image } from 'semantic-ui-react';
+import { Skill } from '../../../app/models/skill';
 
 interface Props {
   skill: Skill;
   openForm: (skill: Skill) => void;
   cancelSelectedSkill: () => void;
+  deleteSkill: (id: string) => void;
 }
 
-export default function SkillDetails({ skill, openForm, cancelSelectedSkill }: Props) {
+export default function SkillDetails({
+  skill,
+  openForm,
+  cancelSelectedSkill,
+  deleteSkill,
+}: Props) {
   return (
     <Card fluid>
-      <Image src="/assets/skill_icon.png" size="small" />
+      <Image src='/assets/skill_icon.png' size='small' />
       <Card.Content>
         <Card.Header>{skill.question}</Card.Header>
         <Card.Description>{skill.answer}</Card.Description>
@@ -20,12 +26,15 @@ export default function SkillDetails({ skill, openForm, cancelSelectedSkill }: P
         </Card.Meta>
       </Card.Content>
       <Card.Content extra>
-        <Button.Group floated="right">
-          <Button basic color="blue" onClick={() => openForm(skill)}>
+        <Button.Group floated='right'>
+          <Button basic color='blue' onClick={() => openForm(skill)}>
             Edit
           </Button>
-          <Button basic color="grey" onClick={cancelSelectedSkill}>
+          <Button basic color='grey' onClick={cancelSelectedSkill}>
             Cancel
+          </Button>
+          <Button bacic color='red' onClick={() => deleteSkill(skill.id)}>
+            Delete
           </Button>
         </Button.Group>
       </Card.Content>

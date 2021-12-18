@@ -1,10 +1,12 @@
-import { Fragment, useEffect, useState } from "react";
-import "./styles.css";
-import axios from "axios";
-import { Container, List } from "semantic-ui-react";
-import { Skill } from "../models/skill";
-import NavBar from "./NavBar";
-import SkillsManagement from "../../features/skills/management/SkillsManagement";
+import { Fragment, useEffect, useState } from 'react';
+import './styles.css';
+import axios from 'axios';
+import { Container, List } from 'semantic-ui-react';
+import { Skill } from '../models/skill';
+import NavBar from './NavBar';
+import SkillsManagement from '../../features/skills/management/SkillsManagement';
+import { v4 as uuid } from 'uuid';
+import { executionAsyncResource } from 'async_hooks';
 
 function App() {
   const [skills, setSkills] = useState<Skill[]>([]);
@@ -21,10 +23,30 @@ function App() {
   const closeForm = () => {
     setSelectedSkill(undefined);
     setIsInEditMode(false);
+  };
+
+  const updateSkill = (skill: Skill) => {
+    setSkills([...skills.filter((s) => s.id !== skill.id), skill]);
+    setIsInEditMode(false);
+    setSelectedSkill(skill);
+    axios.put(`http://localhost:5000/api/skills/${skill.id}`, skill);
+  };
+
+  const createSkill = (skill: Skill) => {
+    skill.id = uuid();
+    setIsInEditMode(false);
+    setSkills([...skills, skill]);
+    setSelectedSkill(skill);
+    axios.post('http://localhost:5000/api/skills', skill);
+  };
+
+  const deleteSkill = (id: string) => {
+    setSkills([...skills.filter(s => s.id !== id)]);
+    axios.delete(`http://localhost:5000/api/skills/${id}`);
   }
 
   useEffect(() => {
-    axios.get<Skill[]>("http://localhost:5000/api/skills").then((response) => {
+    axios.get<Skill[]>('http://localhost:5000/api/skills').then((response) => {
       setSkills(response.data);
     });
   }, []);
@@ -32,7 +54,7 @@ function App() {
   return (
     <>
       <NavBar openForm={openForm} />
-      <Container style={{ marginTop: "2em" }}>
+      <Container style={{ marginTop: '2em' }}>
         <SkillsManagement
           skills={skills}
           isInEditMode={isInEditMode}
@@ -40,6 +62,9 @@ function App() {
           setSelectedSkill={setSelectedSkill}
           openForm={openForm}
           closeForm={closeForm}
+          updateSkill={updateSkill}
+          createSkill={createSkill}
+          deleteSkill={deleteSkill}
         />
       </Container>
     </>
