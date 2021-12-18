@@ -6,6 +6,7 @@ interface Props {
   openForm: (skill: Skill) => void;
   cancelSelectedSkill: () => void;
   deleteSkill: (id: string) => void;
+  isSaving: boolean;
 }
 
 export default function SkillDetails({
@@ -13,6 +14,7 @@ export default function SkillDetails({
   openForm,
   cancelSelectedSkill,
   deleteSkill,
+  isSaving
 }: Props) {
   return (
     <Card fluid>
@@ -33,7 +35,7 @@ export default function SkillDetails({
           <Button basic color='grey' onClick={cancelSelectedSkill}>
             Cancel
           </Button>
-          <Button bacic color='red' onClick={() => deleteSkill(skill.id)}>
+          <Button bacic color='red' onClick={async () => await deleteSkill(skill.id)} loading={isSaving}>
             Delete
           </Button>
         </Button.Group>

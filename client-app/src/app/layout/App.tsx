@@ -17,7 +17,8 @@ function App() {
   const [selectedSkill, setSelectedSkill] = useState<Skill | undefined>(
     undefined
   );
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
 
   const openForm = (skill?: Skill) => {
     setSelectedSkill(skill);
@@ -29,35 +30,41 @@ function App() {
     setIsInEditMode(false);
   };
 
-  const updateSkill = (skill: Skill) => {
+  const updateSkill = async (skill: Skill) => {
+    setIsSaving(true);
     setSkills([...skills.filter((s) => s.id !== skill.id), skill]);
+    await skillsApi.update(skill);
     setIsInEditMode(false);
     setSelectedSkill(skill);
-    skillsApi.update(skill);
+    setIsSaving(false);
   };
 
-  const createSkill = (skill: Skill) => {
+  const createSkill = async (skill: Skill) => {
+    setIsSaving(true);
     skill.id = uuid();
-    setIsInEditMode(false);
     setSkills([...skills, skill]);
+    await skillsApi.create(skill);
+    setIsSaving(false);
+    setIsInEditMode(false);
     setSelectedSkill(skill);
-    skillsApi.create(skill);
   };
 
-  const deleteSkill = (id: string) => {
+  const deleteSkill = async (id: string) => {
+    setIsSaving(true);
     setSkills([...skills.filter(s => s.id !== id)]);
-    skillsApi.delete(id);
+    await skillsApi.delete(id);
+    setIsSaving(false);
   }
 
   useEffect(() => {
-    skillsApi.readAll().then(response => setSkills(response)).then(() => setLoading(false));
+    skillsApi.readAll().then(response => setSkills(response)).then(() => setIsLoading(false));
   }, []);
 
   return (
     <>
       <NavBar openForm={openForm} />
       <Container style={{ marginTop: '2em' }}>
-        { loading && <LoadingIndicator /> }
+        { isLoading && <LoadingIndicator /> }
         <SkillsManagement
           skills={skills}
           isInEditMode={isInEditMode}
@@ -68,6 +75,7 @@ function App() {
           updateSkill={updateSkill}
           createSkill={createSkill}
           deleteSkill={deleteSkill}
+          isSaving={isSaving}
         />
       </Container>
     </>

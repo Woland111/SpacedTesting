@@ -15,6 +15,7 @@ interface Props {
   updateSkill: (skill: Skill) => void;
   createSkill: (skill: Skill) => void;
   deleteSkill: (id: string) => void;
+  isSaving: boolean;
 }
 
 export default function SkillsManagement({
@@ -27,6 +28,7 @@ export default function SkillsManagement({
   updateSkill,
   createSkill,
   deleteSkill,
+  isSaving
 }: Props) {
   const cancelSelectedSkill = () => setSelectedSkill(undefined);
 
@@ -42,6 +44,7 @@ export default function SkillsManagement({
             openForm={openForm}
             cancelSelectedSkill={cancelSelectedSkill}
             deleteSkill={deleteSkill}
+            isSaving={isSaving}
           />
         )}
         {isInEditMode && (
@@ -50,6 +53,7 @@ export default function SkillsManagement({
             closeForm={closeForm}
             updateSkill={updateSkill}
             createSkill={createSkill}
+            isSaving={isSaving}
           />
         )}
       </Grid.Column>

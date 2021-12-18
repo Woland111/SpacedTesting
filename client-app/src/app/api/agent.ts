@@ -4,7 +4,7 @@ import { Skill } from '../models/skill';
 const sleep = (delay: number) => new Promise(resolve => setTimeout(resolve, delay));
 
 axios.interceptors.response.use(async response => {
-  await sleep(3000); 
+  await sleep(2000); 
   return response;
 });
 

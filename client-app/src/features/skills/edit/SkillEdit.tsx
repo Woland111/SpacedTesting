@@ -7,6 +7,7 @@ interface Props {
   closeForm: () => void;
   updateSkill: (skill: Skill) => void;
   createSkill: (skill: Skill) => void;
+  isSaving: boolean;
 }
 
 export default function SkillEdit({
@@ -14,6 +15,7 @@ export default function SkillEdit({
   closeForm,
   updateSkill,
   createSkill,
+  isSaving
 }: Props) {
   const initialState = selectedSkill ?? {
     id: '',
@@ -26,9 +28,8 @@ export default function SkillEdit({
 
   const [skill, setSkill] = useState(initialState);
 
-  const handleSubmit = () => {
-    console.log(skill);
-    skill.id ? updateSkill(skill) : createSkill(skill);
+  const handleSubmit = async () => {
+    skill.id ? await updateSkill(skill) : await createSkill(skill);
     closeForm();
   };
 
@@ -45,29 +46,29 @@ export default function SkillEdit({
           placeholder='Question'
           name='question'
           value={skill.question}
-          onChange={(e) => handleFormInputChange(e)}
+          onChange={e => handleFormInputChange(e)}
         />
         <Form.TextArea
           placeholder='Answer'
           name='answer'
           value={skill.answer}
-          onChange={(e) => handleFormInputChange(e)}
+          onChange={e => handleFormInputChange(e)}
         />
         <Form.Input
           placeholder='Next test on'
           name='nextTestOn'
           value={skill.nextTestOn}
           type='date'
-          onChange={(e) => handleFormInputChange(e)}
+          onChange={e => handleFormInputChange(e)}
         />
         <Form.Input
           placeholder='Result'
           name='result'
           value={skill.result}
-          onChange={(e) => handleFormInputChange(e)}
+          onChange={e => handleFormInputChange(e)}
         />
         <Button.Group floated='right'>
-          <Button positive type='submit'>
+          <Button positive type='submit' loading={isSaving}>
             Save
           </Button>
           <Button basic type='button' color='grey' onClick={closeForm}>
