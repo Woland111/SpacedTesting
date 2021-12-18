@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 import { Skill } from '../models/skill';
 
 const sleep = (delay: number) => new Promise(resolve => setTimeout(resolve, delay));
@@ -22,8 +23,7 @@ const httpRequests = {
 
 const skillsApi = {
   create: (skill: Skill) => {
-    skill.creationTimestamp = '2021-12-18';
-    console.log(skill);
+    skill.creationTimestamp = moment().toISOString().split('T')[0];
     return httpRequests.post('skills', skill);
   },
   readAll: () => {
