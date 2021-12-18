@@ -57,6 +57,7 @@ export default function SkillEdit({
           placeholder='Next test on'
           name='nextTestOn'
           value={skill.nextTestOn}
+          type='date'
           onChange={(e) => handleFormInputChange(e)}
         />
         <Form.Input
