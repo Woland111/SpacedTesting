@@ -9,6 +9,7 @@ import { v4 as uuid } from 'uuid';
 import { executionAsyncResource } from 'async_hooks';
 import httpRequests from '../api/agent';
 import skillsApi from '../api/agent';
+import LoadingIndicator from './LoadingIndicator';
 
 function App() {
   const [skills, setSkills] = useState<Skill[]>([]);
@@ -16,6 +17,7 @@ function App() {
   const [selectedSkill, setSelectedSkill] = useState<Skill | undefined>(
     undefined
   );
+  const [loading, setLoading] = useState(true);
 
   const openForm = (skill?: Skill) => {
     setSelectedSkill(skill);
@@ -48,13 +50,14 @@ function App() {
   }
 
   useEffect(() => {
-    skillsApi.readAll().then(response => setSkills(response));
+    skillsApi.readAll().then(response => setSkills(response)).then(() => setLoading(false));
   }, []);
 
   return (
     <>
       <NavBar openForm={openForm} />
       <Container style={{ marginTop: '2em' }}>
+        { loading && <LoadingIndicator /> }
         <SkillsManagement
           skills={skills}
           isInEditMode={isInEditMode}
