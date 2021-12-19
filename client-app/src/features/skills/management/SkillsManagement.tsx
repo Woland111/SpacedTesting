@@ -8,12 +8,10 @@ import SkillEdit from '../edit/SkillEdit';
 import SkillsList from './SkillsList';
 
 interface Props {
-  updateSkill: (skill: Skill) => void;
   createSkill: (skill: Skill) => void;
 }
 
 export default observer(function SkillsManagement({
-  updateSkill,
   createSkill,
 }: Props) {
   const { skillStore } = useStore();
@@ -29,9 +27,7 @@ export default observer(function SkillsManagement({
         )}
         {skillStore.isInEditMode && (
           <SkillEdit
-            updateSkill={updateSkill}
             createSkill={createSkill}
-            isSaving={skillStore.isSaving}
           />
         )}
       </Grid.Column>

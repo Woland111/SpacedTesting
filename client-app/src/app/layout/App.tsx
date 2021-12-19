@@ -13,15 +13,6 @@ import { observer } from 'mobx-react-lite';
 function App() {
   const { skillStore } = useStore();
 
-  const updateSkill = async (skill: Skill) => {
-    skillStore.setIsSaving(true);
-    await skillsApi.update(skill);
-    skillStore.setSkills([...skillStore.skills.filter((s) => s.id !== skill.id), skill]);
-    skillStore.setEditMode(false);
-    skillStore.selectSkill(skill);
-    skillStore.setIsSaving(false);
-  };
-
   const createSkill = async (skill: Skill) => {
     skillStore.setIsSaving(true);
     skill.id = uuid();
@@ -40,11 +31,8 @@ function App() {
     <>
       <NavBar />
       <Container style={{ marginTop: '2em' }}>
-        { skillStore.isLoading && <LoadingIndicator /> }
-        <SkillsManagement
-          updateSkill={updateSkill}
-          createSkill={createSkill}
-        />
+        {skillStore.isLoading && <LoadingIndicator />}
+        <SkillsManagement createSkill={createSkill} />
       </Container>
     </>
   );

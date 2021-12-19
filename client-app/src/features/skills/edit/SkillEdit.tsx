@@ -5,12 +5,10 @@ import { Skill } from '../../../app/models/skill';
 import { useStore } from '../../../app/stores/store';
 
 interface Props {
-  updateSkill: (skill: Skill) => void;
   createSkill: (skill: Skill) => void;
 }
 
 export default observer(function SkillEdit({
-  updateSkill,
   createSkill,
 }: Props) {
   const { skillStore } = useStore();
@@ -27,7 +25,7 @@ export default observer(function SkillEdit({
   const [skill, setSkill] = useState(initialState);
 
   const handleSubmit = async () => {
-    skill.id ? await updateSkill(skill) : await createSkill(skill);
+    skill.id ? await skillStore.updateSkill(skill) : await createSkill(skill);
     skillStore.closeForm();
   };
 

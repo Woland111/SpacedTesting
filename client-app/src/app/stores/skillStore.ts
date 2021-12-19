@@ -18,7 +18,7 @@ export default class SkillStore {
   selectSkill = (skill: Skill | null) => (this.selectedSkill = skill);
   setIsLoading = (isLoading: boolean) => (this.isLoading = isLoading);
   setIsSaving = (isSaving: boolean) => (this.isSaving = isSaving);
-  
+
   openForm = (skill: Skill | null) => {
     this.selectSkill(skill);
     this.setEditMode(true);
@@ -26,7 +26,7 @@ export default class SkillStore {
 
   closeForm = () => {
     this.setEditMode(false);
-  }
+  };
 
   loadSkills = async () => {
     this.setIsLoading(true);
@@ -36,6 +36,20 @@ export default class SkillStore {
       console.log(error);
     } finally {
       this.setIsLoading(false);
+    }
+  };
+
+  updateSkill = async (skill: Skill) => {
+    this.setIsSaving(true);
+    try {
+      await skillsApi.update(skill);
+      this.setSkills([...this.skills.filter((s) => s.id !== skill.id), skill]);
+      this.setEditMode(false);
+      this.selectSkill(skill);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.setIsSaving(false);
     }
   };
 
