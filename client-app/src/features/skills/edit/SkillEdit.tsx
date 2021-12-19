@@ -7,13 +7,11 @@ import { useStore } from '../../../app/stores/store';
 interface Props {
   updateSkill: (skill: Skill) => void;
   createSkill: (skill: Skill) => void;
-  isSaving: boolean;
 }
 
 export default observer(function SkillEdit({
   updateSkill,
   createSkill,
-  isSaving
 }: Props) {
   const { skillStore } = useStore();
 
@@ -68,7 +66,7 @@ export default observer(function SkillEdit({
           onChange={e => handleFormInputChange(e)}
         />
         <Button.Group floated='right'>
-          <Button positive type='submit' loading={isSaving}>
+          <Button positive type='submit' loading={skillStore.isSaving}>
             Save
           </Button>
           <Button basic type='button' color='grey' onClick={skillStore.closeForm}>
