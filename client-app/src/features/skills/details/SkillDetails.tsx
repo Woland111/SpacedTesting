@@ -4,28 +4,27 @@ import { Skill } from '../../../app/models/skill';
 import { useStore } from '../../../app/stores/store';
 
 interface Props {
-  skill: Skill;
   cancelSelectedSkill: () => void;
   deleteSkill: (id: string) => void;
   isSaving: boolean;
 }
 
 export default observer(function SkillDetails({
-  skill,
   cancelSelectedSkill,
   deleteSkill,
   isSaving
 }: Props) {
   const { skillStore } = useStore();
+  const { selectedSkill: skill } = skillStore;
   return (
     <Card fluid>
       <Image src='/assets/skill_icon.png' size='small' />
       <Card.Content>
-        <Card.Header>{skill.question}</Card.Header>
-        <Card.Description>{skill.answer}</Card.Description>
+        <Card.Header>{skill!.question}</Card.Header>
+        <Card.Description>{skill!.answer}</Card.Description>
         <Card.Meta>
-          <div>Created on: {skill.creationTimestamp}</div>
-          <div>Next test on: {skill.nextTestOn}</div>
+          <div>Created on: {skill!.creationTimestamp}</div>
+          <div>Next test on: {skill!.nextTestOn}</div>
         </Card.Meta>
       </Card.Content>
       <Card.Content extra>
@@ -36,7 +35,7 @@ export default observer(function SkillDetails({
           <Button basic color='grey' onClick={cancelSelectedSkill}>
             Cancel
           </Button>
-          <Button bacic color='red' onClick={async () => await deleteSkill(skill.id)} loading={isSaving}>
+          <Button bacic color='red' onClick={async () => await deleteSkill(skill!.id)} loading={isSaving}>
             Delete
           </Button>
         </Button.Group>

@@ -31,7 +31,6 @@ export default observer(function SkillsManagement({
       <Grid.Column width='6'>
         {skillStore.selectedSkill && !skillStore.isInEditMode && (
           <SkillDetails
-            skill={skillStore.selectedSkill}
             cancelSelectedSkill={cancelSelectedSkill}
             deleteSkill={deleteSkill}
             isSaving={skillStore.isSaving}
