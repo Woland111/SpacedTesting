@@ -1,59 +1,51 @@
 import { useState } from 'react';
 import { Grid, List } from 'semantic-ui-react';
 import { Skill } from '../../../app/models/skill';
+import { useStore } from '../../../app/stores/store';
 import SkillDetails from '../details/SkillDetails';
 import SkillEdit from '../edit/SkillEdit';
 import SkillsList from './SkillsList';
 
 interface Props {
-  skills: Skill[];
-  isInEditMode: boolean;
-  selectedSkill: Skill | undefined;
-  setSelectedSkill: (skill: Skill | undefined) => void;
   openForm: (skill: Skill) => void;
   closeForm: () => void;
   updateSkill: (skill: Skill) => void;
   createSkill: (skill: Skill) => void;
   deleteSkill: (id: string) => void;
-  isSaving: boolean;
 }
 
 export default function SkillsManagement({
-  skills,
-  isInEditMode,
-  selectedSkill,
-  setSelectedSkill,
   openForm,
   closeForm,
   updateSkill,
   createSkill,
   deleteSkill,
-  isSaving
 }: Props) {
-  const cancelSelectedSkill = () => setSelectedSkill(undefined);
+  const { skillStore } = useStore();
+  const cancelSelectedSkill = () => skillStore.setSelectedSkill(null);
 
   return (
     <Grid>
       <Grid.Column width='10'>
-        <SkillsList skills={skills} setSelectedSkill={setSelectedSkill} />
+        <SkillsList setSelectedSkill={skillStore.setSelectedSkill} />
       </Grid.Column>
       <Grid.Column width='6'>
-        {selectedSkill && !isInEditMode && (
+        {skillStore.selectedSkill && !skillStore.isInEditMode && (
           <SkillDetails
-            skill={selectedSkill}
+            skill={skillStore.selectedSkill}
             openForm={openForm}
             cancelSelectedSkill={cancelSelectedSkill}
             deleteSkill={deleteSkill}
-            isSaving={isSaving}
+            isSaving={skillStore.isSaving}
           />
         )}
-        {isInEditMode && (
+        {skillStore.isInEditMode && (
           <SkillEdit
-            skill={selectedSkill}
+            skill={skillStore.selectedSkill}
             closeForm={closeForm}
             updateSkill={updateSkill}
             createSkill={createSkill}
-            isSaving={isSaving}
+            isSaving={skillStore.isSaving}
           />
         )}
       </Grid.Column>

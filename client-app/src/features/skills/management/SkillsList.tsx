@@ -1,16 +1,17 @@
 import { Button, Item, Label, Segment } from "semantic-ui-react";
 import { Skill } from "../../../app/models/skill";
+import { useStore } from "../../../app/stores/store";
 
 interface Props {
-  skills: Skill[];
   setSelectedSkill: (skill: Skill) => void;
 }
 
-export default function SkillsList({ skills, setSelectedSkill }: Props) {
+export default function SkillsList({ setSelectedSkill }: Props) {
+  const { skillStore} = useStore();
   return (
     <Segment>
       <Item.Group divided>
-        {skills.map((skill) => (
+        {skillStore.skills.map((skill) => (
           <Item key={skill.id}>
             <Item.Content>
               <Item.Header as="a">{skill.question}</Item.Header>

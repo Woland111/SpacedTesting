@@ -3,7 +3,7 @@ import { Button, Form, Segment } from 'semantic-ui-react';
 import { Skill } from '../../../app/models/skill';
 
 interface Props {
-  skill: Skill | undefined;
+  skill: Skill | null;
   closeForm: () => void;
   updateSkill: (skill: Skill) => void;
   createSkill: (skill: Skill) => void;
