@@ -21,7 +21,6 @@ export default observer(function SkillsManagement({
   deleteSkill,
 }: Props) {
   const { skillStore } = useStore();
-  const cancelSelectedSkill = () => skillStore.setSelectedSkill(null);
 
   return (
     <Grid>
@@ -31,7 +30,6 @@ export default observer(function SkillsManagement({
       <Grid.Column width='6'>
         {skillStore.selectedSkill && !skillStore.isInEditMode && (
           <SkillDetails
-            cancelSelectedSkill={cancelSelectedSkill}
             deleteSkill={deleteSkill}
             isSaving={skillStore.isSaving}
           />
