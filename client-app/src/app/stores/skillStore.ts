@@ -15,7 +15,7 @@ export default class SkillStore {
 
   setSkills = (skills: Skill[]) => (this.skills = skills);
   setIsInEditMode = (editMode: boolean) => (this.isInEditMode = editMode);
-  setSelectedSkill = (skill: Skill | null) => (this.selectedSkill = skill);
+  selectSkill = (skill: Skill | null) => (this.selectedSkill = skill);
   setIsLoading = (isLoading: boolean) => (this.isLoading = isLoading);
   setIsSaving = (isSaving: boolean) => (this.isSaving = isSaving);
   
@@ -40,7 +40,7 @@ export default class SkillStore {
     try {
       await skillsApi.delete(id);
       this.setSkills([...this.skills.filter((s) => s.id !== id)]);
-      this.setSelectedSkill(null);
+      this.selectSkill(null);
     } catch (error) {
       console.log(error);
     } finally {

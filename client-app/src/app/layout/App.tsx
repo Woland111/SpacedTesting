@@ -14,7 +14,7 @@ function App() {
   const { skillStore } = useStore();
 
   const closeForm = () => {
-    skillStore.setSelectedSkill(null);
+    skillStore.selectSkill(null);
     skillStore.setIsInEditMode(false);
   };
 
@@ -23,7 +23,7 @@ function App() {
     await skillsApi.update(skill);
     skillStore.setSkills([...skillStore.skills.filter((s) => s.id !== skill.id), skill]);
     skillStore.setIsInEditMode(false);
-    skillStore.setSelectedSkill(skill);
+    skillStore.selectSkill(skill);
     skillStore.setIsSaving(false);
   };
 
@@ -34,7 +34,7 @@ function App() {
     skillStore.setSkills([...skillStore.skills, skill]);
     skillStore.setIsSaving(false);
     skillStore.setIsInEditMode(false);
-    skillStore.setSelectedSkill(skill);
+    skillStore.selectSkill(skill);
   };
 
   useEffect(() => {

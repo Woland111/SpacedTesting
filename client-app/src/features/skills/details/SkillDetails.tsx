@@ -22,7 +22,7 @@ export default observer(function SkillDetails() {
           <Button basic color='blue' onClick={() => skillStore.openForm(skill)}>
             Edit
           </Button>
-          <Button basic color='grey' onClick={() => skillStore.setSelectedSkill(null)}>
+          <Button basic color='grey' onClick={() => skillStore.selectSkill(null)}>
             Cancel
           </Button>
           <Button bacic color='red' onClick={async () => await skillStore.deleteSkill(skill!.id)} loading={skillStore.isSaving}>

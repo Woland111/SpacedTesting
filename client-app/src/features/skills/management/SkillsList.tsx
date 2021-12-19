@@ -15,7 +15,7 @@ export default observer(function SkillsList() {
               <Item.Description>{skill.answer}</Item.Description>
               <Item.Meta>Next test on: {skill.nextTestOn}</Item.Meta>
               <Item.Extra>
-                  <Button primary floated='right' color='blue' onClick={() => skillStore.setSelectedSkill(skill)}>View</Button>
+                  <Button primary floated='right' color='blue' onClick={() => skillStore.selectSkill(skill)}>View</Button>
                   <Label>private</Label>
               </Item.Extra>
             </Item.Content>
