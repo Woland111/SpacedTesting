@@ -8,13 +8,11 @@ import SkillEdit from '../edit/SkillEdit';
 import SkillsList from './SkillsList';
 
 interface Props {
-  closeForm: () => void;
   updateSkill: (skill: Skill) => void;
   createSkill: (skill: Skill) => void;
 }
 
 export default observer(function SkillsManagement({
-  closeForm,
   updateSkill,
   createSkill,
 }: Props) {
@@ -32,7 +30,6 @@ export default observer(function SkillsManagement({
         {skillStore.isInEditMode && (
           <SkillEdit
             skill={skillStore.selectedSkill}
-            closeForm={closeForm}
             updateSkill={updateSkill}
             createSkill={createSkill}
             isSaving={skillStore.isSaving}

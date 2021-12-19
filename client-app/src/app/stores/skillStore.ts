@@ -24,6 +24,10 @@ export default class SkillStore {
     this.isInEditMode = true;
   };
 
+  closeForm = () => {
+    this.isInEditMode = false;
+  }
+
   loadSkills = async () => {
     this.setIsLoading(true);
     try {

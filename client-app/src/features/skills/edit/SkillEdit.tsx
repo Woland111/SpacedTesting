@@ -2,10 +2,10 @@ import { observer } from 'mobx-react-lite';
 import React, { ChangeEvent, useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
 import { Skill } from '../../../app/models/skill';
+import { useStore } from '../../../app/stores/store';
 
 interface Props {
   skill: Skill | null;
-  closeForm: () => void;
   updateSkill: (skill: Skill) => void;
   createSkill: (skill: Skill) => void;
   isSaving: boolean;
@@ -13,11 +13,12 @@ interface Props {
 
 export default observer(function SkillEdit({
   skill: selectedSkill,
-  closeForm,
   updateSkill,
   createSkill,
   isSaving
 }: Props) {
+  const { skillStore } = useStore();
+
   const initialState = selectedSkill ?? {
     id: '',
     question: '',
@@ -31,7 +32,7 @@ export default observer(function SkillEdit({
 
   const handleSubmit = async () => {
     skill.id ? await updateSkill(skill) : await createSkill(skill);
-    closeForm();
+    skillStore.closeForm();
   };
 
   const handleFormInputChange = (
@@ -72,7 +73,7 @@ export default observer(function SkillEdit({
           <Button positive type='submit' loading={isSaving}>
             Save
           </Button>
-          <Button basic type='button' color='grey' onClick={closeForm}>
+          <Button basic type='button' color='grey' onClick={skillStore.closeForm}>
             Cancel
           </Button>
         </Button.Group>

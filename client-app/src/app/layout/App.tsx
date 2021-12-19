@@ -13,11 +13,6 @@ import { observer } from 'mobx-react-lite';
 function App() {
   const { skillStore } = useStore();
 
-  const closeForm = () => {
-    skillStore.selectSkill(null);
-    skillStore.setEditMode(false);
-  };
-
   const updateSkill = async (skill: Skill) => {
     skillStore.setIsSaving(true);
     await skillsApi.update(skill);
@@ -47,7 +42,6 @@ function App() {
       <Container style={{ marginTop: '2em' }}>
         { skillStore.isLoading && <LoadingIndicator /> }
         <SkillsManagement
-          closeForm={closeForm}
           updateSkill={updateSkill}
           createSkill={createSkill}
         />
