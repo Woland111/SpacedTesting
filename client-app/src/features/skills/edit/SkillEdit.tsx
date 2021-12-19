@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite';
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
-import { Skill } from '../../../app/models/skill';
 import { useStore } from '../../../app/stores/store';
 
 export default observer(function SkillEdit() {

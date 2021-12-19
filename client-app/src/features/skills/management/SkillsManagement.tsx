@@ -1,7 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { useState } from 'react';
-import { Grid, List } from 'semantic-ui-react';
-import { Skill } from '../../../app/models/skill';
+import { Grid } from 'semantic-ui-react';
 import { useStore } from '../../../app/stores/store';
 import SkillDetails from '../details/SkillDetails';
 import SkillEdit from '../edit/SkillEdit';

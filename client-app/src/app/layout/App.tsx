@@ -1,11 +1,8 @@
 import { useEffect } from 'react';
 import './styles.css';
 import { Container } from 'semantic-ui-react';
-import { Skill } from '../models/skill';
 import NavBar from './NavBar';
 import SkillsManagement from '../../features/skills/management/SkillsManagement';
-import { v4 as uuid } from 'uuid';
-import skillsApi from '../api/agent';
 import LoadingIndicator from './LoadingIndicator';
 import { useStore } from '../stores/store';
 import { observer } from 'mobx-react-lite';
