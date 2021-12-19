@@ -27,9 +27,7 @@ export default observer(function SkillsManagement({
       </Grid.Column>
       <Grid.Column width='6'>
         {skillStore.selectedSkill && !skillStore.isInEditMode && (
-          <SkillDetails
-            isSaving={skillStore.isSaving}
-          />
+          <SkillDetails />
         )}
         {skillStore.isInEditMode && (
           <SkillEdit
@@ -43,4 +41,4 @@ export default observer(function SkillsManagement({
       </Grid.Column>
     </Grid>
   );
-})
+});

@@ -18,6 +18,7 @@ export default class SkillStore {
   setSelectedSkill = (skill: Skill | null) => (this.selectedSkill = skill);
   setIsLoading = (isLoading: boolean) => (this.isLoading = isLoading);
   setIsSaving = (isSaving: boolean) => (this.isSaving = isSaving);
+  
   openForm = (skill: Skill | null) => {
     this.selectedSkill = skill;
     this.isInEditMode = true;

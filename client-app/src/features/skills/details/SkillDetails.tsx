@@ -3,13 +3,7 @@ import { Button, Card, Icon, Image } from 'semantic-ui-react';
 import { Skill } from '../../../app/models/skill';
 import { useStore } from '../../../app/stores/store';
 
-interface Props {
-  isSaving: boolean;
-}
-
-export default observer(function SkillDetails({
-  isSaving
-}: Props) {
+export default observer(function SkillDetails() {
   const { skillStore } = useStore();
   const { selectedSkill: skill } = skillStore;
   return (
@@ -31,7 +25,7 @@ export default observer(function SkillDetails({
           <Button basic color='grey' onClick={() => skillStore.setSelectedSkill(null)}>
             Cancel
           </Button>
-          <Button bacic color='red' onClick={async () => await skillStore.deleteSkill(skill!.id)} loading={isSaving}>
+          <Button bacic color='red' onClick={async () => await skillStore.deleteSkill(skill!.id)} loading={skillStore.isSaving}>
             Delete
           </Button>
         </Button.Group>
