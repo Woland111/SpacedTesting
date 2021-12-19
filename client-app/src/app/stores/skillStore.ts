@@ -39,6 +39,20 @@ export default class SkillStore {
     }
   };
 
+  createSkill = async (skill: Skill) => {
+    this.setIsSaving(true);
+    try {
+      await skillsApi.create(skill);
+      this.setSkills([...this.skills, skill]);
+      this.setEditMode(false);
+      this.selectSkill(skill);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.setIsSaving(false);
+    }
+  }
+ 
   updateSkill = async (skill: Skill) => {
     this.setIsSaving(true);
     try {

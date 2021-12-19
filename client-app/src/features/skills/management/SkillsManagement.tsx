@@ -7,13 +7,7 @@ import SkillDetails from '../details/SkillDetails';
 import SkillEdit from '../edit/SkillEdit';
 import SkillsList from './SkillsList';
 
-interface Props {
-  createSkill: (skill: Skill) => void;
-}
-
-export default observer(function SkillsManagement({
-  createSkill,
-}: Props) {
+export default observer(function SkillsManagement() {
   const { skillStore } = useStore();
 
   return (
@@ -25,11 +19,7 @@ export default observer(function SkillsManagement({
         {skillStore.selectedSkill && !skillStore.isInEditMode && (
           <SkillDetails />
         )}
-        {skillStore.isInEditMode && (
-          <SkillEdit
-            createSkill={createSkill}
-          />
-        )}
+        {skillStore.isInEditMode && <SkillEdit />}
       </Grid.Column>
     </Grid>
   );

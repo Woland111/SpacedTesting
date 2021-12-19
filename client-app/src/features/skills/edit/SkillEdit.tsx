@@ -4,13 +4,7 @@ import { Button, Form, Segment } from 'semantic-ui-react';
 import { Skill } from '../../../app/models/skill';
 import { useStore } from '../../../app/stores/store';
 
-interface Props {
-  createSkill: (skill: Skill) => void;
-}
-
-export default observer(function SkillEdit({
-  createSkill,
-}: Props) {
+export default observer(function SkillEdit() {
   const { skillStore } = useStore();
 
   const initialState = skillStore.selectedSkill ?? {
@@ -25,7 +19,9 @@ export default observer(function SkillEdit({
   const [skill, setSkill] = useState(initialState);
 
   const handleSubmit = async () => {
-    skill.id ? await skillStore.updateSkill(skill) : await createSkill(skill);
+    skill.id
+      ? await skillStore.updateSkill(skill)
+      : await skillStore.createSkill(skill);
     skillStore.closeForm();
   };
 
@@ -42,36 +38,41 @@ export default observer(function SkillEdit({
           placeholder='Question'
           name='question'
           value={skill.question}
-          onChange={e => handleFormInputChange(e)}
+          onChange={(e) => handleFormInputChange(e)}
         />
         <Form.TextArea
           placeholder='Answer'
           name='answer'
           value={skill.answer}
-          onChange={e => handleFormInputChange(e)}
+          onChange={(e) => handleFormInputChange(e)}
         />
         <Form.Input
           placeholder='Next test on'
           name='nextTestOn'
           value={skill.nextTestOn}
           type='date'
-          onChange={e => handleFormInputChange(e)}
+          onChange={(e) => handleFormInputChange(e)}
         />
         <Form.Input
           placeholder='Result'
           name='result'
           value={skill.result}
-          onChange={e => handleFormInputChange(e)}
+          onChange={(e) => handleFormInputChange(e)}
         />
         <Button.Group floated='right'>
           <Button positive type='submit' loading={skillStore.isSaving}>
             Save
           </Button>
-          <Button basic type='button' color='grey' onClick={skillStore.closeForm}>
+          <Button
+            basic
+            type='button'
+            color='grey'
+            onClick={skillStore.closeForm}
+          >
             Cancel
           </Button>
         </Button.Group>
       </Form>
     </Segment>
   );
-})
+});

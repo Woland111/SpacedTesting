@@ -13,16 +13,6 @@ import { observer } from 'mobx-react-lite';
 function App() {
   const { skillStore } = useStore();
 
-  const createSkill = async (skill: Skill) => {
-    skillStore.setIsSaving(true);
-    skill.id = uuid();
-    await skillsApi.create(skill);
-    skillStore.setSkills([...skillStore.skills, skill]);
-    skillStore.setIsSaving(false);
-    skillStore.setEditMode(false);
-    skillStore.selectSkill(skill);
-  };
-
   useEffect(() => {
     skillStore.loadSkills();
   }, [skillStore]);
@@ -32,7 +22,7 @@ function App() {
       <NavBar />
       <Container style={{ marginTop: '2em' }}>
         {skillStore.isLoading && <LoadingIndicator />}
-        <SkillsManagement createSkill={createSkill} />
+        <SkillsManagement />
       </Container>
     </>
   );
