@@ -5,21 +5,19 @@ import { Skill } from '../../../app/models/skill';
 import { useStore } from '../../../app/stores/store';
 
 interface Props {
-  skill: Skill | null;
   updateSkill: (skill: Skill) => void;
   createSkill: (skill: Skill) => void;
   isSaving: boolean;
 }
 
 export default observer(function SkillEdit({
-  skill: selectedSkill,
   updateSkill,
   createSkill,
   isSaving
 }: Props) {
   const { skillStore } = useStore();
 
-  const initialState = selectedSkill ?? {
+  const initialState = skillStore.selectedSkill ?? {
     id: '',
     question: '',
     answer: '',

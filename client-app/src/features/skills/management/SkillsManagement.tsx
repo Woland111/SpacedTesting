@@ -29,7 +29,6 @@ export default observer(function SkillsManagement({
         )}
         {skillStore.isInEditMode && (
           <SkillEdit
-            skill={skillStore.selectedSkill}
             updateSkill={updateSkill}
             createSkill={createSkill}
             isSaving={skillStore.isSaving}
