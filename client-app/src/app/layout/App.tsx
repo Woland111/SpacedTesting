@@ -37,14 +37,6 @@ function App() {
     skillStore.setSelectedSkill(skill);
   };
 
-  const deleteSkill = async (id: string) => {
-    skillStore.setIsSaving(true);
-    await skillsApi.delete(id);
-    skillStore.setSkills([...skillStore.skills.filter(s => s.id !== id)]);
-    skillStore.setIsSaving(false);
-    skillStore.setSelectedSkill(null);
-  }
-
   useEffect(() => {
     skillStore.loadSkills();
   }, [skillStore]);
@@ -58,7 +50,6 @@ function App() {
           closeForm={closeForm}
           updateSkill={updateSkill}
           createSkill={createSkill}
-          deleteSkill={deleteSkill}
         />
       </Container>
     </>

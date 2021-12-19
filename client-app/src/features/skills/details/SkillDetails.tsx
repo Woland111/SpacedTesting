@@ -4,12 +4,10 @@ import { Skill } from '../../../app/models/skill';
 import { useStore } from '../../../app/stores/store';
 
 interface Props {
-  deleteSkill: (id: string) => void;
   isSaving: boolean;
 }
 
 export default observer(function SkillDetails({
-  deleteSkill,
   isSaving
 }: Props) {
   const { skillStore } = useStore();
@@ -33,7 +31,7 @@ export default observer(function SkillDetails({
           <Button basic color='grey' onClick={() => skillStore.setSelectedSkill(null)}>
             Cancel
           </Button>
-          <Button bacic color='red' onClick={async () => await deleteSkill(skill!.id)} loading={isSaving}>
+          <Button bacic color='red' onClick={async () => await skillStore.deleteSkill(skill!.id)} loading={isSaving}>
             Delete
           </Button>
         </Button.Group>

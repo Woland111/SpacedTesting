@@ -11,14 +11,12 @@ interface Props {
   closeForm: () => void;
   updateSkill: (skill: Skill) => void;
   createSkill: (skill: Skill) => void;
-  deleteSkill: (id: string) => void;
 }
 
 export default observer(function SkillsManagement({
   closeForm,
   updateSkill,
   createSkill,
-  deleteSkill,
 }: Props) {
   const { skillStore } = useStore();
 
@@ -30,7 +28,6 @@ export default observer(function SkillsManagement({
       <Grid.Column width='6'>
         {skillStore.selectedSkill && !skillStore.isInEditMode && (
           <SkillDetails
-            deleteSkill={deleteSkill}
             isSaving={skillStore.isSaving}
           />
         )}
