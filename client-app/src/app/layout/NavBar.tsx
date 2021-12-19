@@ -1,11 +1,10 @@
+import { observer } from 'mobx-react-lite';
 import { Button, Container, Menu } from 'semantic-ui-react';
 import { Skill } from '../models/skill';
+import { useStore } from '../stores/store';
 
-interface Props {
-    openForm: (skill: Skill | null) => void;
-}
-
-export default function NavBar({openForm}: Props) {
+export default observer(function NavBar() {
+    const { skillStore } = useStore();
     return (
         <Menu inverted>
             <Container>
@@ -15,9 +14,9 @@ export default function NavBar({openForm}: Props) {
                 </Menu.Item>
                 <Menu.Item name='Skills'/>
                 <Menu.Item>
-                    <Button positive content='Create Skill' onClick={() => openForm(null)}/>
+                    <Button positive content='Create Skill' onClick={() => skillStore.openForm(null)}/>
                 </Menu.Item>
             </Container>
         </Menu>
     )
-}
+})

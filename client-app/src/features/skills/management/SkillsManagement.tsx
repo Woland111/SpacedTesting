@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { Grid, List } from 'semantic-ui-react';
 import { Skill } from '../../../app/models/skill';
@@ -7,15 +8,13 @@ import SkillEdit from '../edit/SkillEdit';
 import SkillsList from './SkillsList';
 
 interface Props {
-  openForm: (skill: Skill) => void;
   closeForm: () => void;
   updateSkill: (skill: Skill) => void;
   createSkill: (skill: Skill) => void;
   deleteSkill: (id: string) => void;
 }
 
-export default function SkillsManagement({
-  openForm,
+export default observer(function SkillsManagement({
   closeForm,
   updateSkill,
   createSkill,
@@ -27,13 +26,12 @@ export default function SkillsManagement({
   return (
     <Grid>
       <Grid.Column width='10'>
-        <SkillsList setSelectedSkill={skillStore.setSelectedSkill} />
+        <SkillsList />
       </Grid.Column>
       <Grid.Column width='6'>
         {skillStore.selectedSkill && !skillStore.isInEditMode && (
           <SkillDetails
             skill={skillStore.selectedSkill}
-            openForm={openForm}
             cancelSelectedSkill={cancelSelectedSkill}
             deleteSkill={deleteSkill}
             isSaving={skillStore.isSaving}
@@ -51,4 +49,4 @@ export default function SkillsManagement({
       </Grid.Column>
     </Grid>
   );
-}
+})

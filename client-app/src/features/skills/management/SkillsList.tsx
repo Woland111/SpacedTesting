@@ -1,12 +1,9 @@
+import { observer } from "mobx-react-lite";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
 import { Skill } from "../../../app/models/skill";
 import { useStore } from "../../../app/stores/store";
 
-interface Props {
-  setSelectedSkill: (skill: Skill) => void;
-}
-
-export default function SkillsList({ setSelectedSkill }: Props) {
+export default observer(function SkillsList() {
   const { skillStore} = useStore();
   return (
     <Segment>
@@ -18,7 +15,7 @@ export default function SkillsList({ setSelectedSkill }: Props) {
               <Item.Description>{skill.answer}</Item.Description>
               <Item.Meta>Next test on: {skill.nextTestOn}</Item.Meta>
               <Item.Extra>
-                  <Button primary floated='right' color='blue' onClick={() => setSelectedSkill(skill)}>View</Button>
+                  <Button primary floated='right' color='blue' onClick={() => skillStore.setSelectedSkill(skill)}>View</Button>
                   <Label>private</Label>
               </Item.Extra>
             </Item.Content>
@@ -27,4 +24,4 @@ export default function SkillsList({ setSelectedSkill }: Props) {
       </Item.Group>
     </Segment>
   );
-}
+})

@@ -13,11 +13,6 @@ import { observer } from 'mobx-react-lite';
 function App() {
   const { skillStore } = useStore();
 
-  const openForm = (skill: Skill | null) => {
-    skillStore.setSelectedSkill(skill);
-    skillStore.setIsInEditMode(true);
-  };
-
   const closeForm = () => {
     skillStore.setSelectedSkill(null);
     skillStore.setIsInEditMode(false);
@@ -56,11 +51,10 @@ function App() {
 
   return (
     <>
-      <NavBar openForm={openForm} />
+      <NavBar />
       <Container style={{ marginTop: '2em' }}>
         { skillStore.isLoading && <LoadingIndicator /> }
         <SkillsManagement
-          openForm={openForm}
           closeForm={closeForm}
           updateSkill={updateSkill}
           createSkill={createSkill}

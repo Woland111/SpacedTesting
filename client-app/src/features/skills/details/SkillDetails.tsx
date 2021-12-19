@@ -1,21 +1,22 @@
+import { observer } from 'mobx-react-lite';
 import { Button, Card, Icon, Image } from 'semantic-ui-react';
 import { Skill } from '../../../app/models/skill';
+import { useStore } from '../../../app/stores/store';
 
 interface Props {
   skill: Skill;
-  openForm: (skill: Skill) => void;
   cancelSelectedSkill: () => void;
   deleteSkill: (id: string) => void;
   isSaving: boolean;
 }
 
-export default function SkillDetails({
+export default observer(function SkillDetails({
   skill,
-  openForm,
   cancelSelectedSkill,
   deleteSkill,
   isSaving
 }: Props) {
+  const { skillStore } = useStore();
   return (
     <Card fluid>
       <Image src='/assets/skill_icon.png' size='small' />
@@ -29,7 +30,7 @@ export default function SkillDetails({
       </Card.Content>
       <Card.Content extra>
         <Button.Group floated='right'>
-          <Button basic color='blue' onClick={() => openForm(skill)}>
+          <Button basic color='blue' onClick={() => skillStore.openForm(skill)}>
             Edit
           </Button>
           <Button basic color='grey' onClick={cancelSelectedSkill}>
@@ -42,4 +43,4 @@ export default function SkillDetails({
       </Card.Content>
     </Card>
   );
-}
+})

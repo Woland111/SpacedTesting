@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React, { ChangeEvent, useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
 import { Skill } from '../../../app/models/skill';
@@ -10,7 +11,7 @@ interface Props {
   isSaving: boolean;
 }
 
-export default function SkillEdit({
+export default observer(function SkillEdit({
   skill: selectedSkill,
   closeForm,
   updateSkill,
@@ -78,4 +79,4 @@ export default function SkillEdit({
       </Form>
     </Segment>
   );
-}
+})
