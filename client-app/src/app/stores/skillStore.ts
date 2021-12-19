@@ -14,7 +14,7 @@ export default class SkillStore {
   }
 
   setSkills = (skills: Skill[]) => (this.skills = skills);
-  setIsInEditMode = (editMode: boolean) => (this.isInEditMode = editMode);
+  setEditMode = (editMode: boolean) => (this.isInEditMode = editMode);
   selectSkill = (skill: Skill | null) => (this.selectedSkill = skill);
   setIsLoading = (isLoading: boolean) => (this.isLoading = isLoading);
   setIsSaving = (isSaving: boolean) => (this.isSaving = isSaving);

@@ -15,14 +15,14 @@ function App() {
 
   const closeForm = () => {
     skillStore.selectSkill(null);
-    skillStore.setIsInEditMode(false);
+    skillStore.setEditMode(false);
   };
 
   const updateSkill = async (skill: Skill) => {
     skillStore.setIsSaving(true);
     await skillsApi.update(skill);
     skillStore.setSkills([...skillStore.skills.filter((s) => s.id !== skill.id), skill]);
-    skillStore.setIsInEditMode(false);
+    skillStore.setEditMode(false);
     skillStore.selectSkill(skill);
     skillStore.setIsSaving(false);
   };
@@ -33,7 +33,7 @@ function App() {
     await skillsApi.create(skill);
     skillStore.setSkills([...skillStore.skills, skill]);
     skillStore.setIsSaving(false);
-    skillStore.setIsInEditMode(false);
+    skillStore.setEditMode(false);
     skillStore.selectSkill(skill);
   };
 
