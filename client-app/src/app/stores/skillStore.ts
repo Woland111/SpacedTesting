@@ -20,12 +20,12 @@ export default class SkillStore {
   setIsSaving = (isSaving: boolean) => (this.isSaving = isSaving);
   
   openForm = (skill: Skill | null) => {
-    this.selectedSkill = skill;
-    this.isInEditMode = true;
+    this.selectSkill(skill);
+    this.setEditMode(true);
   };
 
   closeForm = () => {
-    this.isInEditMode = false;
+    this.setEditMode(false);
   }
 
   loadSkills = async () => {
