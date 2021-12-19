@@ -27,11 +27,8 @@ const skillsApi = {
     return httpRequests.post('skills', skill);
   },
   readAll: () => {
-    const skills: Skill[] = [];
-    return httpRequests.get<Skill[]>('skills').then(response => response.forEach(s => {
-        s.nextTestOn = s.nextTestOn.split('T')[0];
-        skills.push(s);
-    })).then(response => skills);
+    return httpRequests.get<Skill[]>('skills')
+      .then(response => response.map(s => { return {...s, ['nextTestOn']: s.nextTestOn.split('T')[0]}}))
   },
   update: (skill: Skill) => httpRequests.put(`skills/${skill.id}`, skill),
   delete: (id: string) => httpRequests.delete(`skills/${id}`),
