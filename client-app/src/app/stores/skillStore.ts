@@ -14,13 +14,13 @@ export default class SkillStore {
   }
 
   loadSkills = async () => {
-    this.isLoading = true;
+    this.setIsLoading(true);
     try {
       this.skills = await skillsApi.readAll();
     } catch (error) {
       console.log(error);
     } finally {
-      this.isLoading = false;
+      this.setIsLoading(false);
     }
   }
 
