@@ -7,7 +7,7 @@ export default class SkillStore {
   skillsMap: Map<string, Skill> = new Map<string, Skill>();
   isInEditMode: boolean = false;
   selectedSkill: Skill | null = null;
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   isSaving: boolean = false;
 
   constructor() {
@@ -33,7 +33,6 @@ export default class SkillStore {
   }
 
   loadSkills = async () => {
-    this.setIsLoading(true);
     try {
       (await skillsApi.readAll()).forEach(s => this.skillsMap.set(s.id, s));
     } catch (error) {
