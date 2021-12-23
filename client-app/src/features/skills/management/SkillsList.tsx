@@ -8,7 +8,7 @@ export default observer(function SkillsList() {
   return (
     <Segment>
       <Item.Group divided>
-        {skillStore.skills.map((skill) => (
+        {skillStore.skillsSortedByCreationDate.map((skill) => (
           <Item key={skill.id}>
             <Item.Content>
               <Item.Header as="a">{skill.question}</Item.Header>

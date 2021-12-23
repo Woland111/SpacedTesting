@@ -4,7 +4,7 @@ import { Skill } from '../models/skill';
 import { v4 as uuid } from 'uuid';
 
 export default class SkillStore {
-  skills: Skill[] = [];
+  skillsMap: Map<string, Skill> = new Map<string, Skill>();
   isInEditMode: boolean = false;
   selectedSkill: Skill | null = null;
   isLoading: boolean = false;
@@ -14,7 +14,6 @@ export default class SkillStore {
     makeAutoObservable(this);
   }
 
-  setSkills = (skills: Skill[]) => (this.skills = skills);
   setEditMode = (editMode: boolean) => (this.isInEditMode = editMode);
   selectSkill = (skill: Skill | null) => (this.selectedSkill = skill);
   setIsLoading = (isLoading: boolean) => (this.isLoading = isLoading);
@@ -29,10 +28,14 @@ export default class SkillStore {
     this.setEditMode(false);
   };
 
+  get skillsSortedByCreationDate() {
+    return Array.from(this.skillsMap.values()).sort((a, b) => Date.parse(a.creationTimestamp) - Date.parse(b.creationTimestamp));
+  }
+
   loadSkills = async () => {
     this.setIsLoading(true);
     try {
-      this.setSkills(await skillsApi.readAll());
+      (await skillsApi.readAll()).forEach(s => this.skillsMap.set(s.id, s));
     } catch (error) {
       console.log(error);
     } finally {
@@ -45,7 +48,7 @@ export default class SkillStore {
     try {
       skill.id = uuid();
       await skillsApi.create(skill);
-      this.setSkills([...this.skills, skill]);
+      this.skillsMap.set(skill.id, skill);
       this.setEditMode(false);
       this.selectSkill(skill);
     } catch (error) {
@@ -59,7 +62,7 @@ export default class SkillStore {
     this.setIsSaving(true);
     try {
       await skillsApi.update(skill);
-      this.setSkills([...this.skills.filter((s) => s.id !== skill.id), skill]);
+      this.skillsMap.set(skill.id, skill);
       this.setEditMode(false);
       this.selectSkill(skill);
     } catch (error) {
@@ -73,7 +76,7 @@ export default class SkillStore {
     this.setIsSaving(true);
     try {
       await skillsApi.delete(id);
-      this.setSkills([...this.skills.filter((s) => s.id !== id)]);
+      this.skillsMap.delete(id);
       this.selectSkill(null);
     } catch (error) {
       console.log(error);
