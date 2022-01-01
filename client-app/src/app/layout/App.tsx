@@ -11,17 +11,13 @@ import HomePage from '../../features/home/HomePage';
 import SkillEdit from '../../features/skills/edit/SkillEdit';
 
 function App() {
-  const { skillStore } = useStore();
-
-  useEffect(() => {
-    skillStore.loadSkills();
-  }, [skillStore]);
+  
 
   return (
     <>
       <NavBar />
       <Container style={{ marginTop: '2em' }}>
-        {/* {skillStore.isLoading && <LoadingIndicator />}*/}
+        {/* */}
         <Route exact path="/" component={HomePage}/>
         <Route path="/skills" component={SkillsManagement}/>
         <Route path="/createSkill" component={SkillEdit}/>
