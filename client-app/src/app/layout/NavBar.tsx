@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite';
+import { NavLink } from 'react-router-dom';
 import { Button, Container, Menu } from 'semantic-ui-react';
 import { Skill } from '../models/skill';
 import { useStore } from '../stores/store';
@@ -8,13 +9,13 @@ export default observer(function NavBar() {
     return (
         <Menu inverted>
             <Container>
-                <Menu.Item header>
+                <Menu.Item header exact as={NavLink} to='/'>
                     <img src="/assets/app_icon.png" alt="app icon" style={{ marginRight: 10 }}></img>
                     Spaced Testing
                 </Menu.Item>
-                <Menu.Item name='Skills'/>
+                <Menu.Item name='Skills' as={NavLink} to='/skills' />
                 <Menu.Item>
-                    <Button positive content='Create Skill' onClick={() => skillStore.openForm(null)}/>
+                    <Button as={NavLink} to='/createSkill' positive content='Create Skill'/>
                 </Menu.Item>
             </Container>
         </Menu>
