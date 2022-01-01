@@ -6,6 +6,9 @@ import SkillsManagement from '../../features/skills/management/SkillsManagement'
 import LoadingIndicator from './LoadingIndicator';
 import { useStore } from '../stores/store';
 import { observer } from 'mobx-react-lite';
+import { Route } from 'react-router-dom';
+import HomePage from '../../features/home/HomePage';
+import SkillEdit from '../../features/skills/edit/SkillEdit';
 
 function App() {
   const { skillStore } = useStore();
@@ -18,8 +21,10 @@ function App() {
     <>
       <NavBar />
       <Container style={{ marginTop: '2em' }}>
-        {skillStore.isLoading && <LoadingIndicator />}
-        <SkillsManagement />
+        {/* {skillStore.isLoading && <LoadingIndicator />}*/}
+        <Route exact path="/" component={HomePage}/>
+        <Route path="/skills" component={SkillsManagement}/>
+        <Route path="/createSkill" component={SkillEdit}/>
       </Container>
     </>
   );
