@@ -21,7 +21,6 @@ export default observer(function SkillEdit() {
     skill.id
       ? await skillStore.updateSkill(skill)
       : await skillStore.createSkill(skill);
-    skillStore.closeForm();
   };
 
   const handleFormInputChange = (
@@ -66,7 +65,6 @@ export default observer(function SkillEdit() {
             basic
             type='button'
             color='grey'
-            onClick={skillStore.closeForm}
           >
             Cancel
           </Button>

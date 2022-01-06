@@ -1,4 +1,5 @@
 import { observer } from "mobx-react-lite";
+import { Link } from "react-router-dom";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
 import { Skill } from "../../../app/models/skill";
 import { useStore } from "../../../app/stores/store";
@@ -15,7 +16,7 @@ export default observer(function SkillsList() {
               <Item.Description>{skill.answer}</Item.Description>
               <Item.Meta>Next test on: {skill.nextTestOn}</Item.Meta>
               <Item.Extra>
-                  <Button primary floated='right' color='blue' onClick={() => skillStore.selectSkill(skill)}>View</Button>
+                  <Button primary floated='right' color='blue' as={Link} to={`/skills/${skill.id}`}>View</Button>
                   <Label>private</Label>
               </Item.Extra>
             </Item.Content>

@@ -19,20 +19,12 @@ export default class SkillStore {
   setIsLoading = (isLoading: boolean) => (this.isLoading = isLoading);
   setIsSaving = (isSaving: boolean) => (this.isSaving = isSaving);
 
-  openForm = (skill: Skill | null) => {
-    this.selectSkill(skill);
-    this.setEditMode(true);
-  };
-
-  closeForm = () => {
-    this.setEditMode(false);
-  };
-
   get skillsSortedByCreationDate() {
     return Array.from(this.skillsMap.values()).sort((a, b) => Date.parse(a.creationTimestamp) - Date.parse(b.creationTimestamp));
   }
 
   loadSkills = async () => {
+    this.setIsLoading(true);
     try {
       (await skillsApi.readAll()).forEach(s => this.skillsMap.set(s.id, s));
     } catch (error) {
@@ -41,6 +33,22 @@ export default class SkillStore {
       this.setIsLoading(false);
     }
   };
+
+  loadSkill = async (id: string) => {
+    let skill = this.skillsMap.get(id);
+    if (skill) {
+      this.selectSkill(skill);
+    } else {
+      this.setIsLoading(true);
+      try {
+        this.selectSkill(await skillsApi.readOne(id));
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.setIsLoading(false);
+      }
+    }
+  }
 
   createSkill = async (skill: Skill) => {
     this.setIsSaving(true);

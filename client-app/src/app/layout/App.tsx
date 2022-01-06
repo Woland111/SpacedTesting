@@ -9,6 +9,7 @@ import { observer } from 'mobx-react-lite';
 import { Route } from 'react-router-dom';
 import HomePage from '../../features/home/HomePage';
 import SkillEdit from '../../features/skills/edit/SkillEdit';
+import SkillDetails from '../../features/skills/details/SkillDetails';
 
 function App() {
   
@@ -19,8 +20,9 @@ function App() {
       <Container style={{ marginTop: '2em' }}>
         {/* */}
         <Route exact path="/" component={HomePage}/>
-        <Route path="/skills" component={SkillsManagement}/>
+        <Route exact path="/skills" component={SkillsManagement}/>
         <Route path="/createSkill" component={SkillEdit}/>
+        <Route path="/skills/:id" component={SkillDetails}/>
       </Container>
     </>
   );
