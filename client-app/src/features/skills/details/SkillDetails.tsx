@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Button, Card, Icon, Image } from 'semantic-ui-react';
 import LoadingIndicator from '../../../app/layout/LoadingIndicator';
 import { Skill } from '../../../app/models/skill';
@@ -32,10 +32,11 @@ export default observer(function SkillDetails() {
       </Card.Content>
       <Card.Content extra>
         <Button.Group floated='right'>
-          <Button basic color='blue'>
+          <Button as={Link} to={`/editSkill/${skill.id}`} basic color='blue'>
             Edit
           </Button>
           <Button
+            as={Link} to='/skills'
             basic
             color='grey'
             onClick={() => skillStore.selectSkill(null)}

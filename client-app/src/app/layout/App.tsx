@@ -19,10 +19,10 @@ function App() {
       <NavBar />
       <Container style={{ marginTop: '2em' }}>
         {/* */}
-        <Route exact path="/" component={HomePage}/>
-        <Route exact path="/skills" component={SkillsManagement}/>
-        <Route path="/createSkill" component={SkillEdit}/>
-        <Route path="/skills/:id" component={SkillDetails}/>
+        <Route exact path='/' component={HomePage}/>
+        <Route exact path='/skills' component={SkillsManagement}/>
+        <Route path={['/createSkill', '/editSkill/:id']} component={SkillEdit}/>
+        <Route path='/skills/:id' component={SkillDetails}/>
       </Container>
     </>
   );

@@ -13,8 +13,8 @@ export default observer(function SkillsManagement() {
   useEffect(() => {
     skillStore.loadSkills();
   }, [skillStore]);
-
-  {skillStore.isLoading && <LoadingIndicator />}
+ 
+  if (skillStore.isLoading) return <LoadingIndicator />
 
   return (
     <Grid>
@@ -22,10 +22,7 @@ export default observer(function SkillsManagement() {
         <SkillsList />
       </Grid.Column>
       <Grid.Column width='6'>
-        {skillStore.selectedSkill && !skillStore.isInEditMode && (
-          <SkillDetails />
-        )}
-        {skillStore.isInEditMode && <SkillEdit />}
+        <h2>Skills Filters</h2>
       </Grid.Column>
     </Grid>
   );

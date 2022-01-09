@@ -1,21 +1,27 @@
 import { observer } from 'mobx-react-lite';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Button, Form, Segment } from 'semantic-ui-react';
 import { useStore } from '../../../app/stores/store';
 
 export default observer(function SkillEdit() {
   const { skillStore } = useStore();
-
-  const initialState = skillStore.selectedSkill ?? {
+  const { loadSkill } = skillStore;
+  const { id } = useParams<{ id: string }>();
+  const [skill, setSkill] = useState({
     id: '',
     question: '',
     answer: '',
     creationTimestamp: '',
     nextTestOn: '',
     result: '',
-  };
+  });
 
-  const [skill, setSkill] = useState(initialState);
+  useEffect(() => {
+    if (id) {
+      loadSkill(id).then(skill => setSkill(skill!));
+    }
+  }, [loadSkill, id]);
 
   const handleSubmit = async () => {
     skill.id
@@ -61,11 +67,7 @@ export default observer(function SkillEdit() {
           <Button positive type='submit' loading={skillStore.isSaving}>
             Save
           </Button>
-          <Button
-            basic
-            type='button'
-            color='grey'
-          >
+          <Button basic type='button' color='grey'>
             Cancel
           </Button>
         </Button.Group>
