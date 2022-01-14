@@ -1,9 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Button, Card, Icon, Image } from 'semantic-ui-react';
+import { Button, Card, Image } from 'semantic-ui-react';
 import LoadingIndicator from '../../../app/layout/LoadingIndicator';
-import { Skill } from '../../../app/models/skill';
 import { useStore } from '../../../app/stores/store';
 
 export default observer(function SkillDetails() {
@@ -44,7 +43,7 @@ export default observer(function SkillDetails() {
             Cancel
           </Button>
           <Button
-            bacic
+            basic
             color='red'
             onClick={async () => await skillStore.deleteSkill(skill!.id)}
             loading={skillStore.isSaving}

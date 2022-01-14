@@ -3,8 +3,6 @@ import { useEffect } from 'react';
 import { Grid } from 'semantic-ui-react';
 import LoadingIndicator from '../../../app/layout/LoadingIndicator';
 import { useStore } from '../../../app/stores/store';
-import SkillDetails from '../details/SkillDetails';
-import SkillEdit from '../edit/SkillEdit';
 import SkillsList from './SkillsList';
 
 export default observer(function SkillsManagement() {
@@ -15,7 +13,7 @@ export default observer(function SkillsManagement() {
     if (skillsMap.size === 0) {
       loadSkills();
     }
-  }, [skillStore]);
+  }, [skillsMap, loadSkills]);
 
   if (skillStore.isLoading) return <LoadingIndicator />;
 

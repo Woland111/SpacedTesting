@@ -1,7 +1,6 @@
-import { makeAutoObservable, makeObservable, observable } from 'mobx';
-import skillsApi, { httpRequestsTest } from '../api/agent';
+import { makeAutoObservable } from 'mobx';
+import skillsApi from '../api/agent';
 import { Skill } from '../models/skill';
-import axios from 'axios';
 
 export default class SkillStore {
   skillsMap: Map<string, Skill> = new Map<string, Skill>();

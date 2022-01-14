@@ -40,13 +40,13 @@ const skillsApi = {
   readAll: () => {
     return httpRequests.get<Skill[]>('skills').then((data) =>
       data.map((s) => {
-        return { ...s, ['nextTestOn']: s.nextTestOn.split('T')[0] };
+        return { ...s, nextTestOn: s.nextTestOn.split('T')[0] };
       })
     );
   },
   readOne: (id: string) =>
     httpRequests.get<Skill>(`skills/${id}`).then((data) => {
-      return { ...data, ['nextTestOn']: data.nextTestOn.split('T')[0] };
+      return { ...data, nextTestOn: data.nextTestOn.split('T')[0] };
     }),
   update: (skill: Skill) => httpRequests.put(`skills/${skill.id}`, skill),
   delete: (id: string) => httpRequests.delete(`skills/${id}`),

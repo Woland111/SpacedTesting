@@ -1,7 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
-import { Skill } from "../../../app/models/skill";
 import { useStore } from "../../../app/stores/store";
 
 export default observer(function SkillsList() {

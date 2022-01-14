@@ -1,11 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { NavLink } from 'react-router-dom';
 import { Button, Container, Menu } from 'semantic-ui-react';
-import { Skill } from '../models/skill';
-import { useStore } from '../stores/store';
 
 export default observer(function NavBar() {
-    const { skillStore } = useStore();
     return (
         <Menu inverted>
             <Container>

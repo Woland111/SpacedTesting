@@ -1,10 +1,7 @@
-import { useEffect } from 'react';
 import './styles.css';
 import { Container } from 'semantic-ui-react';
 import NavBar from './NavBar';
 import SkillsManagement from '../../features/skills/management/SkillsManagement';
-import LoadingIndicator from './LoadingIndicator';
-import { useStore } from '../stores/store';
 import { observer } from 'mobx-react-lite';
 import { Route, useLocation } from 'react-router-dom';
 import HomePage from '../../features/home/HomePage';
