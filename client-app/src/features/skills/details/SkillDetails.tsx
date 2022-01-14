@@ -1,14 +1,15 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { Button, Card, Image } from 'semantic-ui-react';
 import LoadingIndicator from '../../../app/layout/LoadingIndicator';
 import { useStore } from '../../../app/stores/store';
 
 export default observer(function SkillDetails() {
   const { skillStore } = useStore();
-  const { loadSkill, selectedSkill: skill, isLoading } = skillStore;
+  const { loadSkill, selectedSkill: skill, isLoading, isSaving } = skillStore;
   const { id } = useParams<{ id: string }>();
+  const history = useHistory();
 
   useEffect(() => {
     if (id) {
@@ -43,11 +44,10 @@ export default observer(function SkillDetails() {
             Cancel
           </Button>
           <Button
-            as={Link} to='/skills'
             basic
             color='red'
-            onClick={async () => await skillStore.deleteSkill(skill!.id)}
-            loading={skillStore.isSaving}
+            onClick={async () => { await skillStore.deleteSkill(skill!.id); history.push('/skills')}}
+            loading={isSaving}
           >
             Delete
           </Button>
