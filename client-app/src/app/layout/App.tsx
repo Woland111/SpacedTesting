@@ -12,19 +12,29 @@ import SkillEdit from '../../features/skills/edit/SkillEdit';
 import SkillDetails from '../../features/skills/details/SkillDetails';
 
 function App() {
-
   const location = useLocation();
 
   return (
     <>
-      <NavBar />
-      <Container style={{ marginTop: '2em' }}>
-        {/* */}
-        <Route exact path='/' component={HomePage}/>
-        <Route exact path='/skills' component={SkillsManagement}/>
-        <Route key={location.key} path={['/createSkill', '/editSkill/:id']} component={SkillEdit}/>
-        <Route path='/skills/:id' component={SkillDetails}/>
-      </Container>
+      <Route exact path='/' component={HomePage} />
+      <Route
+        path={'/(.+)'}
+        render={() => (
+          <>
+            <NavBar />
+            <Container style={{ marginTop: '2em' }}>
+              {/* */}
+              <Route exact path='/skills' component={SkillsManagement} />
+              <Route
+                key={location.key}
+                path={['/createSkill', '/editSkill/:id']}
+                component={SkillEdit}
+              />
+              <Route path='/skills/:id' component={SkillDetails} />
+            </Container>
+          </>
+        )}
+      />
     </>
   );
 }
