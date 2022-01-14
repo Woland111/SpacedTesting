@@ -9,12 +9,15 @@ import SkillsList from './SkillsList';
 
 export default observer(function SkillsManagement() {
   const { skillStore } = useStore();
+  const { loadSkills, skillsMap } = skillStore;
 
   useEffect(() => {
-    skillStore.loadSkills();
+    if (skillsMap.size === 0) {
+      loadSkills();
+    }
   }, [skillStore]);
- 
-  if (skillStore.isLoading) return <LoadingIndicator />
+
+  if (skillStore.isLoading) return <LoadingIndicator />;
 
   return (
     <Grid>
