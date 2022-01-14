@@ -43,6 +43,7 @@ export default observer(function SkillDetails() {
             Cancel
           </Button>
           <Button
+            as={Link} to='/skills'
             basic
             color='red'
             onClick={async () => await skillStore.deleteSkill(skill!.id)}
