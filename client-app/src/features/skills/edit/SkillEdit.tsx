@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { Button, Form, Segment } from 'semantic-ui-react';
 import { useStore } from '../../../app/stores/store';
 import { v4 as uuid } from 'uuid';
@@ -76,7 +76,7 @@ export default observer(function SkillEdit() {
           <Button positive type='submit' loading={skillStore.isSaving}>
             Save
           </Button>
-          <Button basic type='button' color='grey'>
+          <Button as={Link} to='/skills' basic type='button' color='grey'>
             Cancel
           </Button>
         </Button.Group>
