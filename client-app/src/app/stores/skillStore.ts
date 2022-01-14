@@ -1,7 +1,6 @@
 import { makeAutoObservable, makeObservable, observable } from 'mobx';
 import skillsApi, { httpRequestsTest } from '../api/agent';
 import { Skill } from '../models/skill';
-import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 
 export default class SkillStore {
@@ -60,7 +59,6 @@ export default class SkillStore {
   createSkill = async (skill: Skill) => {
     this.setIsSaving(true);
     try {
-      skill.id = uuid();
       await skillsApi.create(skill);
       this.skillsMap.set(skill.id, skill);
       this.setEditMode(false);

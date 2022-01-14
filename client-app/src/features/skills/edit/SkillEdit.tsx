@@ -1,8 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Button, Form, Segment } from 'semantic-ui-react';
 import { useStore } from '../../../app/stores/store';
+import { v4 as uuid } from 'uuid';
 
 export default observer(function SkillEdit() {
   const { skillStore } = useStore();
@@ -16,6 +17,7 @@ export default observer(function SkillEdit() {
     nextTestOn: '',
     result: '',
   });
+  const history = useHistory();
 
   useEffect(() => {
     if (id) {
@@ -24,9 +26,16 @@ export default observer(function SkillEdit() {
   }, [loadSkill, id]);
 
   const handleSubmit = async () => {
-    skill.id
-      ? await skillStore.updateSkill(skill)
-      : await skillStore.createSkill(skill);
+    if (skill.id.length === 0)
+    {
+      let newSkill = {
+        ...skill,
+        id: uuid()
+      };
+      skillStore.createSkill(newSkill).then(() => history.push(`/skills/${newSkill.id}`));
+    } else {
+      skillStore.updateSkill(skill).then(() => history.push(`/skills/${skill.id}`));
+    }
   };
 
   const handleFormInputChange = (
