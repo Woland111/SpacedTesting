@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 import skillsApi from '../api/agent';
 import { Skill } from '../models/skill';
 
@@ -87,7 +87,9 @@ export default class SkillStore {
     this.setIsSaving(true);
     try {
       await skillsApi.delete(id);
-      this.skillsMap.delete(id);
+      runInAction(() => {
+        this.skillsMap.delete(id);
+      });
       this.selectSkill(null);
     } catch (error) {
       console.log(error);
