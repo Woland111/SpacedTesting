@@ -6,13 +6,14 @@ import SkillsManagement from '../../features/skills/management/SkillsManagement'
 import LoadingIndicator from './LoadingIndicator';
 import { useStore } from '../stores/store';
 import { observer } from 'mobx-react-lite';
-import { Route } from 'react-router-dom';
+import { Route, useLocation } from 'react-router-dom';
 import HomePage from '../../features/home/HomePage';
 import SkillEdit from '../../features/skills/edit/SkillEdit';
 import SkillDetails from '../../features/skills/details/SkillDetails';
 
 function App() {
-  
+
+  const location = useLocation();
 
   return (
     <>
@@ -21,7 +22,7 @@ function App() {
         {/* */}
         <Route exact path='/' component={HomePage}/>
         <Route exact path='/skills' component={SkillsManagement}/>
-        <Route path={['/createSkill', '/editSkill/:id']} component={SkillEdit}/>
+        <Route key={location.key} path={['/createSkill', '/editSkill/:id']} component={SkillEdit}/>
         <Route path='/skills/:id' component={SkillDetails}/>
       </Container>
     </>
