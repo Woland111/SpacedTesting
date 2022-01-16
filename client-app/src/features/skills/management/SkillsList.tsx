@@ -15,13 +15,9 @@ export default observer(function SkillsList() {
           <Header sub color='teal'>
             {date}
           </Header>
-          <Segment>
-            <Item.Group divided>
-              {skills.map((skill) => (
-                <SkillListItem key={skill.id} skill={skill} />
-              ))}
-            </Item.Group>
-          </Segment>
+          {skills.map((skill) => (
+            <SkillListItem key={skill.id} skill={skill} />
+          ))}
         </Fragment>
       ))}
     </>
