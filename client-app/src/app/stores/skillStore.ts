@@ -26,6 +26,16 @@ export default class SkillStore {
     );
   }
 
+  get skillsGrouped() {
+    return Object.entries(
+      this.skillsSortedByCreationDate.reduce((skills, skill) => {
+        let date = skill.nextTestOn;
+        skills[date] = skills[date] ? [...skills[date], skill] : [skill];
+        return skills;
+      }, {} as { [key: string]: Skill[] })
+    );
+  }
+
   loadSkills = async () => {
     this.setIsLoading(true);
     try {

@@ -1,17 +1,29 @@
 import { observer } from 'mobx-react-lite';
-import { Item, Segment } from 'semantic-ui-react';
+import { Fragment } from 'react';
+import { Header, Item, Segment } from 'semantic-ui-react';
+import { Skill } from '../../../app/models/skill';
 import { useStore } from '../../../app/stores/store';
 import SkillListItem from './SkillListItem';
 
 export default observer(function SkillsList() {
   const { skillStore } = useStore();
+  const { skillsGrouped } = skillStore;
   return (
-    <Segment>
-      <Item.Group divided>
-        {skillStore.skillsSortedByCreationDate.map((skill) => (
-          <SkillListItem key={skill.id} skill={skill} />
-        ))}
-      </Item.Group>
-    </Segment>
+    <>
+      {skillsGrouped.map(([date, skills]) => (
+        <Fragment key={date}>
+          <Header sub color='teal'>
+            {date}
+          </Header>
+          <Segment>
+            <Item.Group divided>
+              {skills.map((skill) => (
+                <SkillListItem key={skill.id} skill={skill} />
+              ))}
+            </Item.Group>
+          </Segment>
+        </Fragment>
+      ))}
+    </>
   );
 });
